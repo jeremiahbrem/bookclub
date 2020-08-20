@@ -3,7 +3,8 @@ import Hero from "./Hero";
 import "./App.css"
 import { Route, BrowserRouter} from "react-router-dom";
 import Home from "./Home";
-import Stuff from "./Stuff";
+import Books from "./Books";
+import Schedule from "./Schedule";
 import Contact from "./Contact";
 import Burger from "./Burger";
 import Menu from "./Menu";
@@ -30,8 +31,9 @@ function App () {
          
           <div className="content">
             <Route exact path="/" component={Home}/>
-            <Route path="/stuff" component={Stuff}/>
+            <Route path="/books" component={Books}/>
             <Route path="/contact" component={Contact}/>
+            <Route path="/schedule" component={Schedule}/>
           </div>
         </div>
       </BrowserRouter>

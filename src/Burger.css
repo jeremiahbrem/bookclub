@@ -2,6 +2,7 @@
     color: white;
     font-size: 50px;
     cursor: pointer;
+    margin-top: 15px;
 }
 
 div {
@@ -9,3 +10,10 @@ div {
     transition: all 0.3s linear;
     position: relative;
 }
+
+@media (max-width: 900px) {
+    .icon {
+        font-size: 30px;
+    }
+}
+
