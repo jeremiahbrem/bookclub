@@ -1,0 +1,22 @@
+.Intro {
+    text-align: center;
+    padding: 30px;
+    height: calc(100vh - 100px);
+}
+
+h2 {
+    font-family: 'Dancing script', cursive;
+    font-size: 40px;
+}
+
+p {
+    font-family: Arial;
+    font-size: 20px;
+    line-height: 3rem;
+}
+
+@media (max-width: 600px) {
+    p {
+        line-height: 2rem;
+    }
+}

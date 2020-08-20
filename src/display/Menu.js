@@ -5,9 +5,9 @@ import "./Menu.css";
 
 const Menu = ({open}) => {
     return (
-    <div className="menu" style={{transform: (open) ? 'translateX(0)' : 'translateX(-150%)'}}>
-      <ul>
-          <li><NavLink className="link" to="/">Home</NavLink></li>
+      <div className="menu" style={{transform: (open) ? 'translateX(0)' : 'translateX(-150%)'}}>
+        <ul>
+          <li><NavLink className="link" to="/">Home</NavLink></li>
           <li><NavLink className="link" to="/books">Books</NavLink></li>
           <li><NavLink className="link" to="/contact">Contact</NavLink></li>
           <li><NavLink className="link" to="/schedule">Schedule</NavLink></li>

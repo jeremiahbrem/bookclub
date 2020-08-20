@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Hero from "./Hero";
+import Hero from "./display/Hero";
 import "./App.css"
 import { Route, BrowserRouter} from "react-router-dom";
 import Home from "./Home";
 import Books from "./Books";
 import Schedule from "./Schedule";
 import Contact from "./Contact";
-import Burger from "./Burger";
-import Menu from "./Menu";
+import Burger from "./display/Burger";
+import Menu from "./display/Menu";
 
 function App () {
     const [open, setOpen] = useState(false);
