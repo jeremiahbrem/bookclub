@@ -19,6 +19,10 @@
     text-decoration: none;
 }    
 
+.active {
+    color: lightseagreen;
+}
+
 li {
     list-style: none;
     padding: 10px;

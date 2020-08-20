@@ -8,6 +8,8 @@ import Schedule from "./Schedule";
 import Contact from "./Contact";
 import Burger from "./display/Burger";
 import Menu from "./display/Menu";
+import Login from "./Login";
+import Admin from "./Admin";
 
 function App () {
     const [open, setOpen] = useState(false);
@@ -22,18 +24,18 @@ function App () {
               <h1>Our Book Club</h1>
             </div>
             <div className="login">
-              <a href="#">Login</a>
+              <a href="/login">Login</a>
             </div>
             <Menu open={open} setOpen={setOpen}/>
           </div>
-     
-          <Hero />
          
           <div className="content">
             <Route exact path="/" component={Home}/>
             <Route path="/books" component={Books}/>
             <Route path="/contact" component={Contact}/>
             <Route path="/schedule" component={Schedule}/>
+            <Route path="/login" component={Login}/>
+            <Route path="/admin" component={Admin}/>
           </div>
         </div>
       </BrowserRouter>
