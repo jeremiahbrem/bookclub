@@ -7,6 +7,7 @@
 h2 {
     font-family: 'Dancing script', cursive;
     font-size: 40px;
+    margin-top: 70px;
 }
 
 p {
@@ -18,5 +19,8 @@ p {
 @media (max-width: 600px) {
     p {
         line-height: 2rem;
+    }
+    h2 {
+        margin-top: 35px;
     }
 }

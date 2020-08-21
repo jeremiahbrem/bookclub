@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Hero from "./display/Hero";
 import "./App.css"
 import { Route, BrowserRouter} from "react-router-dom";
 import Home from "./Home";

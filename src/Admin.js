@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-// import "./Intro.css";
+import React, { useState } from "react";
+// import { BOOK_BASE_URL, COVER_BASE_URL } from "./config";
+import SearchForm from "./SearchForm";
+import Book from "./Book";
+import "./Admin.css";
  
-class Admin extends Component {
-  render() {
+const Admin = () => {
+    const [input, setInput] = useState("");
     return (
-      <div className="Intro">
-        <h2>Admin Page</h2>
-        <h4>Search ISBN</h4>
-        <form>
-            <input type="search" name="isbnSearch" id="isbnSearch" placeholder="Enter ISBN#"/>
-        </form>
+      <div>
+        <SearchForm input={input} setInput={setInput} />
+        {input && <Book input={input}/>}
+        
       </div>
-    );
+    )
   }
-}
- 
-export default Admin;
+
+  export default Admin;
