@@ -1,22 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import "./SearchForm.css";
 
-const SearchForm = ({input, setInput}) => {
+const SearchForm = ({isbn, setIsbn}) => {
+  const [input, setInput] = useState("");
   
-    function handleChange(event) {
-      setInput(event.target.value);
-    }
-  
-    function handleSubmit(event) {
-      event.preventDefault();
-    }
-
-    return (
-        <form onSubmit={handleSubmit}>
-          <label>Search ISBN</label>
-            <input type="text" value={input} onChange={handleChange} />
-          <input type="submit" value="Submit" />
-        </form>
-    );
+  function handleChange(event) {
+    setInput(event.target.value);
   }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    setIsbn(input);
+    setInput("");
+  }
+
+  return (
+    <div className="form">
+      <form onSubmit={handleSubmit}>
+        <label className="label">Search ISBN</label>
+        <input className="input" type="text" value={input} onChange={handleChange} required/>
+        <input className="button" type="submit" value="Submit" />
+      </form>
+    </div>  
+  );
+}
 
   export default SearchForm;
