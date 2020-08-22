@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { COVER_BASE_URL } from "./config";
-import AddBook from "./AddBook";
-import "./Admin.css";
+import "./GetBook.css";
  
 function GetBook({isbn}) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
-  const [addBook, setAddBook] = useState(false);
-  const [newBookData, setNewBookData] = useState({});
-  const [bookAdded, setBookAdded] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -36,25 +32,20 @@ function GetBook({isbn}) {
     return <div>Loading...</div>;
   } else {
     return (
-      <div>
-        <div>
+      <div className="search-result">
+        <div className="book-img">
           <img src={`${COVER_BASE_URL}b/isbn/${isbn}-M.jpg`} alt=""/>
         </div>
+        <div className="details-list">
           <ul>
             <li>ISBN: {isbn}</li>
             <li>Title: {items.details.title}</li>
-            <li>Link: {items.info_url}</li>
-            <li>Author: {items.details.authors[0].name}</li>
+            <li>Buy Link: <a href={items.info_url}>Click here</a></li>
+            <li>Author: {(items.details.authors) ? items.details.authors[0].name : ""}</li>
             <li>Published: {items.details.publish_date}</li>
           </ul>
-          {!addBook && <button onClick={() => setAddBook(true)}>Add</button>}
-          {addBook && <AddBook 
-            setNewBookData={setNewBookData} 
-            setAddBook={setAddBook}
-            setBookAdded={setBookAdded}
-            />}
-          {bookAdded && <div>Book added!</div>}  
-      </div>
+        </div>
+      </div>      
     );
   }
 }

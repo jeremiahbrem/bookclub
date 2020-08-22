@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./SearchForm.css";
 
-const SearchForm = ({isbn, setIsbn}) => {
+const { validateIsbn } = require("./utilities/validateIsbn.js");
+
+const SearchForm = ({isbn, setIsbn, setShowAddButton, setShowBookAdded}) => {
   const [input, setInput] = useState("");
   
   function handleChange(event) {
@@ -11,17 +13,23 @@ const SearchForm = ({isbn, setIsbn}) => {
   function handleSubmit(event) {
     event.preventDefault();
     setIsbn(input);
+    if (validateIsbn(input)) {
+      setShowAddButton(true);
+    }
+    else
+      setShowAddButton(false);
+    setShowBookAdded(false);
     setInput("");
   }
 
   return (
-    <div className="form">
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
         <label className="label">Search ISBN</label>
         <input className="input" type="text" value={input} onChange={handleChange} required/>
         <input className="button" type="submit" value="Submit" />
       </form>
-    </div>  
+    </div>
   );
 }
 

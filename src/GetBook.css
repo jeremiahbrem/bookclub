@@ -1,0 +1,34 @@
+.search-result {
+    width: 300px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: center;
+}
+
+.details-list ul {
+    background-color: white;
+    font-family: Arial;
+    padding: 0px;
+    list-style-type: none;
+}
+
+.details-list li {
+    margin: 0px;
+    line-height: 1em;
+    padding: 3px;
+}
+
+button {
+    width: 100px;
+    box-shadow: 2px 2px 5px black;
+}
+
+.book-img {
+    width: 300px;
+}
+
+.details-list {
+    width: 300px;
+    margin: 0px;
+    padding: 0px;
+}

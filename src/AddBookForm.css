@@ -1,0 +1,39 @@
+.add-book-form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.add-label {
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+}
+
+.add-input {
+    width: 300px;
+    margin: 10px;
+    height: 20px;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 5px black;
+    border-width: 1px;
+    position: relative;
+    right: 65px;
+}
+
+.add-textarea {
+    height: 150px;
+    width: 300px;
+    margin: 10px;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 5px black;
+    border-width: 1px;
+    position: relative;
+    right: 65px;
+}
+
+.add-book-btn {
+    width: 100px;
+    box-shadow: 2px 2px 5px black;
+}

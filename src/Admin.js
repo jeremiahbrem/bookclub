@@ -1,19 +1,50 @@
 import React, { useState } from "react";
 // import { BOOK_BASE_URL, COVER_BASE_URL } from "./config";
 import SearchForm from "./SearchForm";
-import SearchBook from "./GetBook";
+import GetBook from "./GetBook";
+import AddBook from "./AddBook";
 import "./Admin.css";
-// import validateIsbn from "./utilities/validateIsbn";
 const { validateIsbn } = require("./utilities/validateIsbn.js");
  
 const Admin = () => {
     const [isbn, setIsbn] = useState("");
+    const [showAddButton, setShowAddButton] = useState(false);
+    const [showBookAdded, setShowBookAdded] = useState(false);
+    const [showAddForm, setShowAddForm] = useState(false);
+    const [newBookData, setNewBookData] = useState({});
+  
+
     return (
-      <div>
-        <SearchForm isbn={isbn} setIsbn={setIsbn} />
-        {validateIsbn(isbn) && <SearchBook isbn={isbn}/>}
-        {(isbn && !validateIsbn(isbn)) && <div>Invalid isbn</div>}
-        
+      <div className="Admin-new-book">
+        <div className="Admin-search-form">
+          <SearchForm isbn={isbn} 
+            setIsbn={setIsbn}
+            setShowAddButton={setShowAddButton}
+            setShowBookAdded={setShowBookAdded}
+          />
+        </div>
+
+        <div className="Admin-search-result">
+          {validateIsbn(isbn) && <GetBook isbn={isbn}/>}
+
+          {showAddButton && <button className="add-button" onClick={() => {
+              setShowAddForm(true);
+              setShowAddButton(false);
+            }}>Add Book</button>
+          }   
+          {(isbn && !validateIsbn(isbn)) && <div className="invalid">Invalid ISBN</div>}
+        </div>      
+
+        <div className="Admin-add-book">  
+          <AddBook 
+            setNewBookData={setNewBookData}
+            showAddForm={showAddForm}
+            showBookAdded={showBookAdded}
+            setShowBookAdded={setShowBookAdded}
+            setShowAddForm={setShowAddForm}
+            isbn={isbn}
+          />  
+        </div>  
       </div>
     )
   }

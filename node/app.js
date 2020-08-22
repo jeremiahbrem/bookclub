@@ -23,7 +23,7 @@ app.use(cors());
 // app.use(authenticateJWT);
 
 app.use(express.json());
-app.use("/books", bookRoutes);
+app.use("/db/api/books", bookRoutes);
 // app.use("/", authRoutes);
 
 // add logging system
