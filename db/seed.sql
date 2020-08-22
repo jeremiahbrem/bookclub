@@ -12,14 +12,18 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS books (
     id SERIAL PRIMARY KEY,
     isbn VARCHAR(30) NOT NULL UNIQUE,
+    title TEXT NOT NULL,
     synopsis TEXT,
-    read_date VARCHAR(30),
-    genre VARCHAR(30)
+    read_date DATE,
+    genre VARCHAR(30),
+    author VARCHAR(50),
+    publish_date DATE,
+    info_url TEXT
 );
 
 CREATE TABLE IF NOT EXISTS meetings (
     id SERIAL PRIMARY KEY,
-    date TIMESTAMP NOT NULL,
+    date TIMESTAMP,
     book_id INT REFERENCES books,
     description TEXT
 );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { BOOK_BASE_URL, COVER_BASE_URL } from "./config";
 import SearchForm from "./SearchForm";
-import GetBook from "./GetBook";
+import GetNewBook from "./GetNewBook";
 import AddBook from "./AddBook";
 import "./Admin.css";
 const { validateIsbn } = require("./utilities/validateIsbn.js");
@@ -11,13 +11,11 @@ const Admin = () => {
     const [showAddButton, setShowAddButton] = useState(false);
     const [showBookAdded, setShowBookAdded] = useState(false);
     const [showAddForm, setShowAddForm] = useState(false);
-    const [newBookData, setNewBookData] = useState({});
-  
 
     return (
       <div className="Admin-new-book">
         <div className="Admin-search-form">
-          <SearchForm isbn={isbn} 
+          <SearchForm 
             setIsbn={setIsbn}
             setShowAddButton={setShowAddButton}
             setShowBookAdded={setShowBookAdded}
@@ -25,7 +23,7 @@ const Admin = () => {
         </div>
 
         <div className="Admin-search-result">
-          {validateIsbn(isbn) && <GetBook isbn={isbn}/>}
+          {validateIsbn(isbn) && <GetNewBook isbn={isbn}/>}
 
           {showAddButton && <button className="add-button" onClick={() => {
               setShowAddForm(true);
@@ -37,7 +35,6 @@ const Admin = () => {
 
         <div className="Admin-add-book">  
           <AddBook 
-            setNewBookData={setNewBookData}
             showAddForm={showAddForm}
             showBookAdded={showBookAdded}
             setShowBookAdded={setShowBookAdded}

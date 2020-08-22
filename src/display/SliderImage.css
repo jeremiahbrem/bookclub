@@ -1,0 +1,9 @@
+.Slider-container {
+    margin-top: 60px;
+    height: calc(100vh - 100px);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    position: relative;
+}

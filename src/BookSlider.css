@@ -1,0 +1,30 @@
+.BookSlider {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}  
+
+.BookSlider-book {
+    display: inline-block;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.book-read ul{
+   background-color: transparent;
+}
+
+.book-read li {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 30px;
+}
+
+.BookSlider {
+    margin-top: 60px;
+    height: calc(100vh - 100px);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("./assets/images/bookslider.jpg")
+}

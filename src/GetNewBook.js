@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { COVER_BASE_URL } from "./config";
-import "./GetBook.css";
+import "./GetNewBook.css";
  
-function GetBook({isbn}) {
+function GetNewBook({isbn}) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
@@ -30,6 +30,8 @@ function GetBook({isbn}) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
     return <div>Loading...</div>;
+  } else if (!items) {
+    return <div>No Results</div>;
   } else {
     return (
       <div className="search-result">
@@ -41,7 +43,6 @@ function GetBook({isbn}) {
             <li>ISBN: {isbn}</li>
             <li>Title: {items.details.title}</li>
             <li>Buy Link: <a href={items.info_url}>Click here</a></li>
-            <li>Author: {(items.details.authors) ? items.details.authors[0].name : ""}</li>
             <li>Published: {items.details.publish_date}</li>
           </ul>
         </div>
@@ -53,4 +54,4 @@ function GetBook({isbn}) {
 
 
  
-export default GetBook;
+export default GetNewBook;

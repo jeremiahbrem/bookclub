@@ -3,7 +3,7 @@ import "./SearchForm.css";
 
 const { validateIsbn } = require("./utilities/validateIsbn.js");
 
-const SearchForm = ({isbn, setIsbn, setShowAddButton, setShowBookAdded}) => {
+const SearchForm = ({setIsbn, setShowAddButton, setShowBookAdded}) => {
   const [input, setInput] = useState("");
   
   function handleChange(event) {

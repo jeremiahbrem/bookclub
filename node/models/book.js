@@ -8,11 +8,12 @@ class Book {
 
   /* stores isbn and user edited book properties;
      can retrieve full book details from api */
-  constructor(isbn, synopsis, genre, read_date) {
+  constructor(isbn, synopsis, genre, read_date, author) {
     this.isbn = isbn;
     this.synopsis = synopsis;
     this.genre = genre;
     this.read_date = read_date;
+    this.author = author;
   }
 
   /* 
@@ -37,7 +38,12 @@ class Book {
     }
 
     const result = await db.query(
-      `SELECT isbn, synopsis, genre, read_date FROM books ${searchQuery}`
+      `SELECT isbn, synopsis, genre, 
+       TO_CHAR(
+        read_date,
+        'MON YYYY'
+       ) month_year, 
+       author FROM books ${searchQuery}`
     );
     return result.rows;
   }
@@ -65,7 +71,7 @@ class Book {
    * indexes - array for storing value placeholders for query statement
    * values - array of given updated property values
   */ 
-  static async add({isbn, synopsis=null, genre=null, read_date=null}) {
+  static async add({isbn, synopsis=null, genre=null, read_date=null, author=null}) {
     // check for duplicate isbn
     const isbnCheck = await db.query(
       `SELECT isbn FROM books WHERE isbn='${isbn}'`
@@ -75,10 +81,10 @@ class Book {
     }
   
     let query = `INSERT INTO books 
-      (isbn, synopsis, genre, read_date)
-      VALUES ($1, $2, $3, $4) RETURNING *`;
+      (isbn, synopsis, genre, read_date, author)
+      VALUES ($1, $2, $3, $4, $5) RETURNING *`;
 
-    let values = [isbn, synopsis, genre, read_date];
+    let values = [isbn, synopsis, genre, read_date, author];
 
     const result = await db.query(query, values);
     return new Book(result.rows[0]);
