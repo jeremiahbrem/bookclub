@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS books (
     read_date DATE,
     genre VARCHAR(30),
     author VARCHAR(50),
-    publish_date DATE,
+    publish_date INTEGER,
     info_url TEXT
 );
 

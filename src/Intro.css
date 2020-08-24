@@ -4,10 +4,10 @@
     height: calc(100vh - 100px);
 }
 
-h2 {
+.Intro > h2 {
     font-family: 'Dancing script', cursive;
     font-size: 40px;
-    margin-top: 70px;
+    margin-top: 90px;
 }
 
 p {
@@ -21,6 +21,6 @@ p {
         line-height: 2rem;
     }
     h2 {
-        margin-top: 35px;
+        margin-top: 60px;
     }
 }

@@ -21,27 +21,30 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-// returns single company
-// router.get("/:handle", ensureLoggedIn, async function (req, res, next) {
-//   try {
-//     const getComp = await Company.getCompany(req.params.handle);
-//     const jobs = await getComp.getJobs();
-//     return res.json({
-//       company: { 
-//         handle: getComp.handle,
-//         name: getComp.name,
-//         description: getComp.description,
-//         num_employees: getComp.num_employees,
-//         logo_url: getComp.logo_url,
-//         jobs: jobs
-//       }  
-//     });
-//   } catch(err) {
-//     return next(err);
-//   }
-// })
+// returns single book
+router.get("/:isbn", async function (req, res, next) {
+  try {
+    const getBook = await Book.getBook(req.params.isbn);
+    // return res.json(
+    //   { 
+    //     book: {
+    //       isbn: getBook.isbn,
+    //       title: getBook.title,
+    //       synopsis: getBook.synopsis,
+    //       genre: getBook.genre,
+    //       publish_date: getBook.publish_date,
+    //       month_year: getBook.read_date,
+    //       author: getBook.author,
+    //       info_url: getBook.info_url
+    //       }
+    //   })    
+    return res.json({book: getBook})
+  } catch(err) {
+    return next(err);
+  }
+})
 
-// creates and returns new company
+// creates and returns new book
 // router.post("/", ensureIsAdmin, async function (req, res, next) {
 router.post("/", async function (req, res, next) {
   try {
@@ -61,7 +64,7 @@ router.post("/", async function (req, res, next) {
   }
 })
 
-// // updates company and returns updated company
+// updates book and returns updated book
 // router.patch("/:handle", ensureIsAdmin, async function (req, res, next) {
 //   try {
 //     if (req.body.handle) {
@@ -74,7 +77,7 @@ router.post("/", async function (req, res, next) {
 //       let error = new ExpressError(listOfErrors, 400);
 //       return next(error);
 //     }
-//     const comp = await Company.getCompany(req.params.handle);
+//     const comp = await Book.getCompany(req.params.handle);
 //     const company = await comp.update(req.body);
 //     return res.json({company});
 //   } catch(err) {

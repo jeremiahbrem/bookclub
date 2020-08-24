@@ -1,0 +1,50 @@
+.AdminBookList {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    background-color: lightsteelblue;
+    min-height: calc(100vh - 140px);
+    padding: 40px 20px 5px 20px;
+    position: relative;
+}  
+
+.AdminBookList-book {
+    display: inline-block;
+    text-align: center;
+    margin: 35px 25px 0px 5px;
+}
+
+.Admin-slider-img {
+    cursor: pointer;
+}
+
+
+.Admin-book-read ul{
+   background-color: transparent;
+}
+
+.Admin-book-read li {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 30px;
+    list-style: none;
+}
+
+.Admin-edit-btn {
+    background-color: green;
+    color: white;
+    width: 75px;
+    margin-right: 20px;
+}
+
+.Admin-delete-btn {
+    background-color: red;
+    color: white;
+    width: 75px;
+}
+
+.Admin-list-head {
+    position: absolute;
+    top: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}

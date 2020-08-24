@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import Intro from "./Intro";
 import Hero from "./display/Hero";
 import BookSlider from "./BookSlider";
 // import Book from "./models/BookClass";
  
-class Home extends Component {
-  render() {
+const Home = () => {
     return (
       <div>
         <Hero/>
@@ -14,6 +13,5 @@ class Home extends Component {
       </div>
     );
   }
-}
  
 export default Home;

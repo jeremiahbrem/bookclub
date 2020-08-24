@@ -8,17 +8,20 @@ class Book {
 
   /* stores isbn and user edited book properties;
      can retrieve full book details from api */
-  constructor(isbn, synopsis, genre, read_date, author) {
+  constructor(isbn, title, synopsis, genre, publish_date, info_url, read_date, author) {
     this.isbn = isbn;
+    this.title = title;
     this.synopsis = synopsis;
     this.genre = genre;
+    this.publish_date = publish_date;
+    this.info_url = info_url;
     this.read_date = read_date;
     this.author = author;
   }
 
   /* 
    */
-  static async getBooks(title, author, read_date) {
+  static async getBooks(title, author, read_date, order="ASC", sort="read_date") {
     let searchQuery = '';
     let queryStart = 'WHERE';
 
@@ -33,8 +36,8 @@ class Book {
     }
     
     if (read_date) {
+      read_date = `${read_date.year}-${read_date.month}-01`;
       searchQuery += `${queryStart} read_date LIKE '%${read_date}%'`;
-      queryStart = 'AND'
     }
 
     const result = await db.query(
@@ -43,35 +46,34 @@ class Book {
         read_date,
         'MON YYYY'
        ) month_year, 
-       author FROM books ${searchQuery}`
+       author FROM books ${searchQuery}
+       ORDER BY ${sort} ${order}`
     );
     return result.rows;
   }
 
 
-  /* gets company by handle and returns Company object */ 
-  // static async getCompany(handleInput) {
-  //   const result = await db.query(
-  //     `SELECT handle, name, description, num_employees, logo_url
-  //       FROM companies WHERE handle='${handleInput}'`
-  //   );
+  /* gets book by isbn and returns Book object */ 
+  static async getBook(isbnVal) {
+    const result = await db.query(
+      `SELECT isbn, title, synopsis, genre, publish_date, info_url, 
+        TO_CHAR(
+          read_date,
+          'MON YYYY'
+        ) month_year, author
+        FROM books WHERE isbn='${isbnVal}'`
+    );
   
-  //   if (!result.rows[0]) {
-  //     throw new ExpressError(`Company with handle ${handleInput} not found`, 404);
-  //   }
-  //   const { handle, name, description, num_employees, logo_url } = result.rows[0];
-  //   return new Company(handle, name, description, num_employees, logo_url);
-  // }
+    if (!result.rows[0]) {
+      throw new ExpressError(`Book with isbn ${isbnVal} not found`, 404);
+    }
+    // const { isbn, title, synopsis, genre, publish_date, info_url, month_year, author } = result.rows[0];
+    // return new Book(isbn, title, synopsis, genre, publish_date, info_url, month_year, author);
+    return result.rows[0];
+  }
 
-  /* Creates new company with given properties and returns Company object
-     Accepts parameter object that may have 2 or more inputs given from route
-   * index - incremental value placeholder in query statements
-   * query - db.query statement string
-   * columns - array for storing columns to be changed in SET statement
-   * indexes - array for storing value placeholders for query statement
-   * values - array of given updated property values
-  */ 
-  static async add({isbn, synopsis=null, genre=null, read_date=null, author=null}) {
+
+  static async add({isbn, title, synopsis, genre, publish_date, info_url, read_date, author}) {
     // check for duplicate isbn
     const isbnCheck = await db.query(
       `SELECT isbn FROM books WHERE isbn='${isbn}'`
@@ -81,10 +83,10 @@ class Book {
     }
   
     let query = `INSERT INTO books 
-      (isbn, synopsis, genre, read_date, author)
-      VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+      (isbn, title, synopsis, genre, publish_date, info_url, read_date, author)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`;
 
-    let values = [isbn, synopsis, genre, read_date, author];
+    let values = [isbn, title, synopsis, genre, publish_date, info_url, read_date, author];
 
     const result = await db.query(query, values);
     return new Book(result.rows[0]);

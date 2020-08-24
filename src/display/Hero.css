@@ -1,5 +1,5 @@
 .Hero-container {
-    margin-top: 60px;
+    margin-top: 64px;
     height: calc(100vh - 100px);
     background-position: center;
     background-size: cover;
@@ -8,7 +8,7 @@
     position: relative;
 }
 
-h3 {
+.Hero-container > h3 {
     font-family: 'Great Vibes', cursive;
     color: white;
     font-size: 70px;

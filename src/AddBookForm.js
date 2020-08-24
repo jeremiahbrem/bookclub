@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./AddBookForm.css";
 const { addNewBook } = require("./utilities/addNewBook.js");
 
-const AddBookForm = ({setShowBookAdded, setShowAddForm, isbn}) => {
+const AddBookForm = ({setShowBookAdded, setShowAddForm, isbn, items}) => {
   const [synopsis, setSynopsis] = useState("");
   const [genre, setGenre] = useState("");
   const [read_date, setReadDate] = useState("");
@@ -23,7 +23,16 @@ const AddBookForm = ({setShowBookAdded, setShowAddForm, isbn}) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    addNewBook({isbn, synopsis, genre, read_date, author});
+    addNewBook({
+      isbn, 
+      title: items.details.title, 
+      synopsis, 
+      genre, 
+      publish_date: items.details.publish_date,
+      info_url: items.info_url, 
+      read_date, 
+      author
+    });
     setShowBookAdded(true);
     setShowAddForm(false);
     setSynopsis("");
@@ -51,7 +60,7 @@ const AddBookForm = ({setShowBookAdded, setShowAddForm, isbn}) => {
         <input className="add-input" type="text" name="author" 
           value={author} onChange={handleChange} />
         
-        <input className="add-book-btn" type="submit" value="Submit" />
+        <button className="add-book-btn" type="submit">Add Book</button>
       </form>
     </div>  
   );

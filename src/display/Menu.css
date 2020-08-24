@@ -9,9 +9,10 @@
     left: 0px;
     width: 33%;
     transition: transform 0.3s ease-in-out; 
+    z-index: 2;
 }
 
-.link {
+.menu-link {
     font-size: 25px;
     font-weight: bold;
     color: white;
@@ -23,12 +24,12 @@
     color: lightseagreen;
 }
 
-li {
+.menu-li {
     list-style: none;
     padding: 10px;
 }
 
-ul {
+.menu-ul {
     background-color: gray;
     padding: 30px;
 }

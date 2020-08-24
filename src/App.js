@@ -5,6 +5,7 @@ import Home from "./Home";
 import Books from "./Books";
 import Schedule from "./Schedule";
 import Contact from "./Contact";
+import Book from "./Book";
 import Burger from "./display/Burger";
 import Menu from "./display/Menu";
 import Login from "./Login";
@@ -12,6 +13,7 @@ import Admin from "./Admin";
 
 function App () {
     const [open, setOpen] = useState(false);
+    // const [book, setBook] = useState(null);
     return (
       <BrowserRouter>
         <div className="App">
@@ -31,6 +33,7 @@ function App () {
           <div className="content">
             <Route exact path="/" component={Home}/>
             <Route path="/books" component={Books}/>
+            <Route exact path="/book/:isbn" component={Book}/>
             <Route path="/contact" component={Contact}/>
             <Route path="/schedule" component={Schedule}/>
             <Route path="/login" component={Login}/>

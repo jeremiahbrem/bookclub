@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import { COVER_BASE_URL } from "./config";
 import "./GetNewBook.css";
  
-function GetNewBook({isbn}) {
+function GetNewBook({isbn, items, setItems, setShowAddForm}) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState(null);
 
   useEffect(() => {
     let mounted = true;
@@ -16,16 +15,16 @@ function GetNewBook({isbn}) {
         if (mounted) {
           setItems(result[`ISBN:${isbn}`]);
           setIsLoaded(true);
-        }
-      },
-    
-      (error) => {
+          setShowAddForm(true);
+        }  
+      })
+    .catch((error) => {
         setIsLoaded(true);
         setError(error);
       }
     )
     return () => mounted = false;
-  })
+  },[isbn, setItems, setShowAddForm])
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
