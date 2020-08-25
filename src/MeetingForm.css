@@ -1,0 +1,55 @@
+.MeetingForm-container {
+    display: flex;
+
+}
+
+.MeetingForm-input-container {
+    width: 50%;
+    padding: 10px;
+}
+
+.MeetingForm-editor-container {
+    width: 50%;
+    padding: 0px 10px 10px 10px;
+}
+
+.MeetingForm-form {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.MeetingForm-input {
+    width: 100%;
+    height: 30px;
+    box-shadow: 2px 2px 5px black;
+    border-width: 1px;
+    margin-bottom: 20px;
+}
+
+.MeetingForm-label {
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.editorClassName {
+    min-height: 150px;
+    background-color: rgb(235, 225, 225);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.MeetingForm-btn {
+    margin-top: 20px;
+    bottom: 10px;
+}
+
+.toolbarClassName {
+    background-color: rgb(143, 137, 137);
+}
+
+@media (max-width: 600px) {
+    .MeetingForm-input-container, .MeetingForm-editor-container {
+        width: 100%;
+    }
+}

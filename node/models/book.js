@@ -53,7 +53,7 @@ class Book {
   }
 
 
-  /* gets book by isbn and returns Book object */ 
+  /* gets single book by isbn and returns Book object */ 
   static async getBook(isbnVal) {
     const result = await db.query(
       `SELECT id, isbn, title, synopsis, genre, publish_date, info_url, 

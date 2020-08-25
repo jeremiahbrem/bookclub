@@ -22,7 +22,7 @@ class Meeting {
       `SELECT m.id, m.book_id, m.description, m.link, b.isbn,
       TO_CHAR(
         date,
-        'HH:MM AM MON DD, YYYY'
+        'HH:MI AM MON DD, YYYY'
        ) meet_date
        FROM meetings AS m JOIN books AS b
        ON m.book_id = b.id
@@ -33,21 +33,21 @@ class Meeting {
 
 
   /* gets meeting by id and returns Meeting object */ 
-  static async getMeeting(id) {
+  static async getMeeting(meetingId) {
     const result = await db.query(
       `SELECT id, book_id, description, link,
-        TO_CHAR(
-          read_date,
-          'MON YYYY'
-        ) meet_date
-        FROM meetings WHERE id='${id}'`
+      TO_CHAR(
+        date,
+        'HH:MI YYYY-MM-DD'
+       ) meet_date
+        FROM meetings WHERE id='${meetingId}'`
     );
   
     if (!result.rows[0]) {
-      throw new ExpressError(`Meeting with id ${id} not found`, 404);
+      throw new ExpressError(`Meeting with id ${meetingId} not found`, 404);
     }
-    const { id, date, book_id, description, link } = result.rows[0];
-    return new Meeting(id, date, book_id, description, link);
+    const { id, meet_date, book_id, description, link } = result.rows[0];
+    return new Meeting(id, meet_date, book_id, description, link);
   }
 
 
@@ -55,7 +55,7 @@ class Meeting {
   static async add({date, book_id, description, link}) {  
     let query = `INSERT INTO meetings 
       (date, book_id, description, link)
-      VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+      VALUES ($1, $2, $3, $4) RETURNING *`;
 
     let values = [date, book_id, description, link];
 

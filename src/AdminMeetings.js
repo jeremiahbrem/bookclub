@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
-import DeleteMeeting from "./DeleteBook";
+import DeleteMeeting from "./DeleteMeeting";
 import "./AdminMeetings.css";
  
-const AdminMeetings = ({deleteMeeting, setDeleteMeeting}) => {
+const AdminMeetings = ({
+  deleteMeeting, 
+  setDeleteMeeting, 
+  setMeetingId, 
+  setShowEditMeeting, 
+  setMeetings
+  }) => {
+  
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
@@ -16,6 +23,7 @@ const AdminMeetings = ({deleteMeeting, setDeleteMeeting}) => {
         if (mounted) {
           setItems(result.meetings);
           setIsLoaded(true);
+          setMeetings(result.meetings.map(m => m.id));
         }
       })
     .catch((error) => {
@@ -24,7 +32,7 @@ const AdminMeetings = ({deleteMeeting, setDeleteMeeting}) => {
       }
     )
     return () => mounted = false;
-  }, [setItems, setIsLoaded, setDbError])
+  }, [setItems, setIsLoaded, setDbError, setMeetings])
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -43,7 +51,7 @@ const AdminMeetings = ({deleteMeeting, setDeleteMeeting}) => {
             return <div><DeleteMeeting id={meeting.id}/></div>
           }
           return (  
-            <div key={meeting.id}className="AdminMeetings-book">    
+            <div key={meeting.id} className="AdminMeetings-book">    
               <div className="AdminMeetings-book-img">
                 <img className="AdminMeetings-slider-img" src={`/b/isbn/${meeting.isbn}-M.jpg`} alt=""/>
               </div>
@@ -53,7 +61,13 @@ const AdminMeetings = ({deleteMeeting, setDeleteMeeting}) => {
                 </ul>
               </div>
               <div>
-                <button className="AdminMeetings-edit-btn">Edit</button>
+                <button onClick={() => {
+                    setMeetingId(meeting.id);
+                    setShowEditMeeting(true);
+                    window.location.href='#schedule';
+                  }}
+                  className="AdminMeetings-edit-btn">Edit
+                </button>
                 <button onClick={() => setDeleteMeeting(meeting.id)} className="Admin-delete-btn">Delete</button>
               </div>
             </div> 

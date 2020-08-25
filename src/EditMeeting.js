@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { EditorState, convertFromRaw } from "draft-js";
+import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import MeetingForm from "./MeetingForm";
 import "./EditMeeting.css";
+
+const { updateMeeting } = require("./utilities/updateMeeting.js");
  
-const EditMeeting = ({ match }) => {
-    const {
-      params: { id }
-    } = match;
+const EditMeeting = ({ id, setShowEditMeeting }) => {
+
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState(null);
-  const [isbn, setIsbn] = useState("");  
+  const [book_id, setBookId] = useState("");  
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [url, setUrl] = useState("");
+  const [link, setLink] = useState("");
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty(),
   );
@@ -25,13 +25,15 @@ const EditMeeting = ({ match }) => {
     .then(
       (result) => {
         if (mounted) {
-          setItem(result.meeting);
-          const richText = convertFromRaw(JSON.parse(item.description));
-          setEditorState(richText);
-          setIsbn(item.isbn);
-          setDate(item.date.slice(9))
-          setTime(item.slice(0,9));
-          setUrl(item.link);
+          const resp = result.meeting;
+          setItem(resp);
+          setEditorState(
+            EditorState.createWithContent(convertFromRaw(JSON.parse(resp.description)))
+          );
+          setBookId(resp.book_id);
+          setDate(resp.date.slice(6))
+          setTime(resp.date.slice(0,5));
+          setLink(resp.link);
           setIsLoaded(true);
         }
       })
@@ -41,33 +43,31 @@ const EditMeeting = ({ match }) => {
       }
     )
     return () => mounted = false;
-  })
+  },[id, item, setItem, setBookId, setDate, setTime, setLink, setIsLoaded])
 
   function handleChange(event) {
     const target = event.target;
     const name = event.target.name;
     if (name === 'isbn')
-      setIsbn(target.value)
+      setBookId(target.value)
     else if (name === 'date')
       setDate(target.value);
     else if (name === 'time')
       setTime(target.value);
     else 
-      setUrl(target.value);  
+      setLink(target.value);  
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    addNewBook({
-      isbn, 
-      title: items.details.title, 
-      synopsis, 
-      genre, 
-      publish_date: items.details.publish_date,
-      info_url: items.info_url, 
-      read_date, 
-      author
+    updateMeeting({
+      id,
+      date: `${date} ${time}`, 
+      book_id,
+      description: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
+      link: link
     });
+    setShowEditMeeting(false);
   }
 
   if (error) {
@@ -81,17 +81,18 @@ const EditMeeting = ({ match }) => {
   } else {
     return (
       <div>
+        <h3 className="EditMeeting-head">Edit Meeting</h3>
         <MeetingForm 
           editorState={editorState}
           setEditorState={setEditorState}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
-          isbn={isbn}
-          date={item.date.slice(9)}
-          time={item.date.slice(0,9)}
-          url={item.link}
+          book_id={book_id}
+          date={date}
+          time={time}
+          link={link}
       />
-      
+      <button className="EditMeeting-cancel" onClick={() => setShowEditMeeting(false)}>Cancel</button>
       </div>
     );  
   }
