@@ -9,12 +9,7 @@
     position: relative;
 }
 
-#search {
-    position: relative;
-    bottom: 125px;
-}
-
-#list {
+#search, #list, #schedule {
     position: relative;
     bottom: 125px;
 }

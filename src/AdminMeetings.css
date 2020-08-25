@@ -1,4 +1,4 @@
-.AdminBookList {
+.AdminMeetings {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
@@ -8,42 +8,42 @@
     position: relative;
 }  
 
-.AdminBookList-book {
+.AdminMeetings-book {
     display: inline-block;
     text-align: center;
     margin: 35px 25px 0px 5px;
 }
 
-.Admin-slider-img {
+.AdminMeetings-slider-img {
     cursor: pointer;
 }
 
 
-.Admin-book-read ul{
+.AdminMeetings-read ul{
    background-color: transparent;
 }
 
-.Admin-book-read li {
+.AdminMeetings-read li {
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(70, 65, 65);
-    font-size: 30px;
+    font-size: 20px;
     list-style: none;
 }
 
-.Admin-edit-btn {
+.AdminMeetings-edit-btn {
     background-color: green;
     color: white;
     width: 75px;
     margin-right: 20px;
 }
 
-.Admin-delete-btn {
+.AdminMeetings-delete-btn {
     background-color: red;
     color: white;
     width: 75px;
 }
 
-.Admin-list-head {
+.AdminMeetings-head {
     position: absolute;
     top: 0px;
     font-family: Arial, Helvetica, sans-serif;

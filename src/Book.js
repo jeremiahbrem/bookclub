@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { COVER_BASE_URL } from "./config";
+// import { COVER_BASE_URL } from "./config";
 import "./Book.css";
  
 const Book = ({ match }) => {
@@ -43,7 +43,7 @@ const Book = ({ match }) => {
       <div className="Book">   
         <div className="bg-image">f</div> 
         <div className="Book-img">
-          <img src={`${COVER_BASE_URL}b/isbn/${item.isbn}-M.jpg`} alt=""/>
+          <img src={`/b/isbn/${item.isbn}-M.jpg`} alt=""/>
         </div>
         <div className="Book-details">
           <ul>

@@ -2,13 +2,13 @@
 
 const db = require("../db");
 const ExpressError = require("../helpers/expressError.js");
-// const sqlForPartialUpdate = require("../helpers/partialUpdate.js")
+const sqlForPartialUpdate = require("../helpers/partialUpdate.js")
 
 class Book {
 
-  /* stores isbn and user edited book properties;
-     can retrieve full book details from api */
+  /* constructor for new Book object with properties */
   constructor(id, isbn, title, synopsis, genre, publish_date, info_url, read_date, author) {
+    this.id = id;
     this.isbn = isbn;
     this.title = title;
     this.synopsis = synopsis;
@@ -19,7 +19,7 @@ class Book {
     this.author = author;
   }
 
-  /* 
+  /* retreives all books from database or a filtered list with given properties
    */
   static async getBooks(title, author, read_date, order="ASC", sort="read_date") {
     let searchQuery = '';
@@ -93,19 +93,19 @@ class Book {
   }
 
   // Updates book instance with given properties and returns updated book
-  // async update(parameters) {
-  //   // check for duplicate name
-  //   const nameCheck = await db.query(
-  //     `SELECT name FROM companies WHERE name='${parameters.name}'
-  //      AND handle != '${this.handle}'`
-  //   );
-  //   if (nameCheck.rows[0]) {
-  //     throw new ExpressError(`Name ${parameters.name} already exists.`, 400);
-  //   }
-  //   const { query, values } = sqlForPartialUpdate('companies', parameters, 'handle', this.handle);
-  //   const result = await db.query(query, values);  
-  //   return result.rows[0];
-  // }
+  async update(parameters) {
+    // check for duplicate isbn
+    const isbnCheck = await db.query(
+      `SELECT isbn FROM books WHERE isbn='${parameters.isbn}'
+       AND id != '${this.id}'`
+    );
+    if (isbnCheck.rows[0]) {
+      throw new ExpressError(`ISBN ${parameters.isbn} already exists.`, 400);
+    }
+    const { query, values } = sqlForPartialUpdate('books', parameters, 'id', this.id);
+    const result = await db.query(query, values);  
+    return result.rows[0];
+  }
 
   // Deletes book from database
   async delete() {

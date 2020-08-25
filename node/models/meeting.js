@@ -2,58 +2,60 @@
 
 const db = require("../db");
 const ExpressError = require("../helpers/expressError.js");
-// const sqlForPartialUpdate = require("../helpers/partialUpdate.js")
+const sqlForPartialUpdate = require("../helpers/partialUpdate.js")
 
 class Meeting {
 
-  /* stores isbn and user edited book properties;
-     can retrieve full book details from api */
-  constructor(date, book_id, description, link) {
+  /* constructor for new meeting object with properties */
+  constructor(id, date, book_id, description, link) {
+    this.id = id;
     this.date = date;
     this.book_id = book_id;
     this.description = description;
     this.link = link;
   }
 
-  /* 
+  /* returns single meeting as Meeting object 
    */
   static async getMeetings() {
     const result = await db.query(
-      `SELECT book_id, description, link
-       TO_CHAR(
+      `SELECT m.id, m.book_id, m.description, m.link, b.isbn,
+      TO_CHAR(
         date,
-        'HH:MM Mon DD, YYYY'
+        'HH:MM AM MON DD, YYYY'
        ) meet_date
-       FROM meetings ORDER BY meet_date`
+       FROM meetings AS m JOIN books AS b
+       ON m.book_id = b.id
+       ORDER BY meet_date`
     );
     return result.rows;
   }
 
 
-  /* gets book by isbn and returns Book object */ 
-//   static async getBook(isbnVal) {
-//     const result = await db.query(
-//       `SELECT isbn, title, synopsis, genre, publish_date, info_url, 
-//         TO_CHAR(
-//           read_date,
-//           'MON YYYY'
-//         ) month_year, author
-//         FROM books WHERE isbn='${isbnVal}'`
-//     );
+  /* gets meeting by id and returns Meeting object */ 
+  static async getMeeting(id) {
+    const result = await db.query(
+      `SELECT id, book_id, description, link,
+        TO_CHAR(
+          read_date,
+          'MON YYYY'
+        ) meet_date
+        FROM meetings WHERE id='${id}'`
+    );
   
-//     if (!result.rows[0]) {
-//       throw new ExpressError(`Book with isbn ${isbnVal} not found`, 404);
-//     }
-//     const { isbn, title, synopsis, genre, publish_date, info_url, month_year, author } = result.rows[0];
-//     return new Book(isbn, title, synopsis, genre, publish_date, info_url, month_year, author);
-//   }
+    if (!result.rows[0]) {
+      throw new ExpressError(`Meeting with id ${id} not found`, 404);
+    }
+    const { id, date, book_id, description, link } = result.rows[0];
+    return new Meeting(id, date, book_id, description, link);
+  }
 
 
-  // adds new book to db and returns Book object
+  // adds new meeting to db and returns Meeting object
   static async add({date, book_id, description, link}) {  
     let query = `INSERT INTO meetings 
       (date, book_id, description, link)
-      VALUES ($1, $2, $3, $4) RETURNING *`;
+      VALUES ($1, $2, $3, $4, $5) RETURNING *`;
 
     let values = [date, book_id, description, link];
 
@@ -62,30 +64,23 @@ class Meeting {
   }
 
   // Updates book instance with given properties and returns updated book
-  // async update(parameters) {
-  //   // check for duplicate name
-  //   const nameCheck = await db.query(
-  //     `SELECT name FROM companies WHERE name='${parameters.name}'
-  //      AND handle != '${this.handle}'`
-  //   );
-  //   if (nameCheck.rows[0]) {
-  //     throw new ExpressError(`Name ${parameters.name} already exists.`, 400);
-  //   }
-  //   const { query, values } = sqlForPartialUpdate('companies', parameters, 'handle', this.handle);
-  //   const result = await db.query(query, values);  
-  //   return result.rows[0];
-  // }
+  async update(parameters) {
+    
+    const { query, values } = sqlForPartialUpdate('meetings', parameters, 'id', this.id);
+    const result = await db.query(query, values);  
+    return result.rows[0];
+  }
 
-  // Deletes book from database
-//   async delete() {
-//     const response = await db.query(
-//       `DELETE FROM books WHERE isbn=$1
-//        RETURNING isbn`,
-//        [this.isbn]
-//     );
-//     const message = `Book ${response.rows[0].isbn} deleted.`
-//     return message;
-//   }
+  // Deletes meeting from database
+  async delete() {
+    const response = await db.query(
+      `DELETE FROM meetings WHERE id=$1
+       RETURNING id`,
+       [this.id]
+    );
+    const message = `Meeting ${response.rows[0].id} deleted.`
+    return message;
+  }
 }
 
 module.exports = Meeting;

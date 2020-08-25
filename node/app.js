@@ -9,9 +9,9 @@ const morgan = require("morgan");
 const app = express();
 const cors = require("cors");
 const bookRoutes = require("./api/bookRoutes.js");
-const meetingRoutes = require("./api/meetingRoutes")
-// const authRoutes = require("./api/authRoutes.js");
-// const { authenticateJWT } = require("./middleware/auth.js");
+const meetingRoutes = require("./api/meetingRoutes.js")
+const authRoutes = require("./api/authRoutes.js");
+const { authenticateJWT } = require("./middleware/auth.js");
 
 // allow both form-encoded and json body parsing
 app.use(express.json());
@@ -21,12 +21,12 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
 // get auth token for all routes
-// app.use(authenticateJWT);
+app.use(authenticateJWT);
 
 app.use(express.json());
 app.use("/db/api/books", bookRoutes);
 app.use("/db/api/meetings", meetingRoutes);
-// app.use("/", authRoutes);
+app.use("/", authRoutes);
 
 // add logging system
 app.use(morgan("tiny"));

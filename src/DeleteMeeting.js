@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
- 
-function DeleteBook({isbn}) {
+
+function DeleteMeeting({id}) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [message, setMessage] = useState(null);
@@ -11,7 +11,7 @@ function DeleteBook({isbn}) {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     };
-    fetch(`/db/api/books/${isbn}`, requestOptions)
+    fetch(`/db/api/meetings/${id}`, requestOptions)
     .then(res => res.json())
     .then(
       (result) => {
@@ -26,7 +26,7 @@ function DeleteBook({isbn}) {
       }
     )
     return () => mounted = false;
-  },[isbn, setIsLoaded, setError])
+  },[id, setIsLoaded, setError])
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -41,4 +41,4 @@ function DeleteBook({isbn}) {
 
 
  
-export default DeleteBook;
+export default DeleteMeeting;

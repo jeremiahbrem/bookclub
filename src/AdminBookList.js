@@ -7,7 +7,6 @@ const AdminBookList = ({deleteBook, setDeleteBook}) => {
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
-  console.log(deleteBook);
 
   useEffect(() => {
     let mounted = true;
@@ -55,7 +54,6 @@ const AdminBookList = ({deleteBook, setDeleteBook}) => {
                 </ul>
               </div>
               <div>
-                {/* <button onClick={() => setDeleteBook(book.isbn)} className="Admin-edit-btn">Edit</button> */}
                 <button className="Admin-edit-btn">Edit</button>
                 <button onClick={() => setDeleteBook(book.isbn)} className="Admin-delete-btn">Delete</button>
               </div>

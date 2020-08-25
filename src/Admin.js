@@ -7,6 +7,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 import "./Admin.css";
 import AdminBookList from "./AdminBookList";
 import NewMeeting from "./NewMeeting";
+import AdminMeetings from "./AdminMeetings";
 const { validateIsbn } = require("./utilities/validateIsbn.js");
  
 const Admin = () => {
@@ -15,13 +16,14 @@ const Admin = () => {
     const [showAddForm, setShowAddForm] = useState(false);
     const [items, setItems] = useState(null);
     const [deleteBook, setDeleteBook] = useState(null);
+    const [deleteMeeting, setDeleteMeeting] = useState(null);
 
     return (
       <div>
         <div className="admin-navbar">
           <Link to="/admin/#search">Search</Link>
           <Link to="/admin/#list">List</Link>
-          <Link to="/admin/#search">Schedule</Link>
+          <Link to="/admin/#schedule">Schedule</Link>
         </div>
         <div className="Admin-new-book">
           <div id="search"></div>
@@ -61,7 +63,11 @@ const Admin = () => {
             <AdminBookList deleteBook={deleteBook} setDeleteBook={setDeleteBook}/>
         </div>
         <div>
+          <div id="schedule"></div>
           <NewMeeting/>
+        </div>
+        <div>
+          <AdminMeetings deleteMeeting={deleteMeeting} setDeleteMeeting={setDeleteMeeting}/>
         </div>
       </div>
       
