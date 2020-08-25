@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS users;
+-- DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS meetings;
-DROP TABLE IF EXISTS books;
+-- DROP TABLE IF EXISTS books;
 
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
@@ -23,7 +23,8 @@ CREATE TABLE IF NOT EXISTS books (
 
 CREATE TABLE IF NOT EXISTS meetings (
     id SERIAL PRIMARY KEY,
-    date TIMESTAMP,
-    book_id INT REFERENCES books,
-    description TEXT
+    date TIMESTAMP NOT NULL,
+    isbn INT REFERENCES books,
+    description TEXT,
+    link URL 
 );

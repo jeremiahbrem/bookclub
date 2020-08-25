@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { COVER_BASE_URL } from "./config";
+// import { COVER_BASE_URL } from "./config";
+import DeleteBook from "./DeleteBook";
 import "./AdminBookList.css";
  
-const AdminBookList = () => {
+const AdminBookList = ({deleteBook, setDeleteBook}) => {
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
- 
+  console.log(deleteBook);
 
   useEffect(() => {
     let mounted = true;
@@ -25,7 +26,7 @@ const AdminBookList = () => {
       }
     )
     return () => mounted = false;
-  })
+  }, [setItems, setIsLoaded, setDbError])
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -40,10 +41,13 @@ const AdminBookList = () => {
       <div className="AdminBookList">
         <h3 className="Admin-list-head">Edit Booklist</h3>
         {items.map(book => {
+          if (deleteBook === book.isbn) {
+            return <div><DeleteBook isbn={book.isbn}/></div>
+          }
           return (  
             <div className="AdminBookList-book" key={book.isbn}>    
               <div className="Admin-book-img">
-                <img className="Admin-slider-img" src={`${COVER_BASE_URL}b/isbn/${book.isbn}-M.jpg`} alt=""/>
+                <img className="Admin-slider-img" src={`/b/isbn/${book.isbn}-M.jpg`} alt=""/>
               </div>
               <div className="Admin-book-read">
                 <ul>
@@ -51,8 +55,9 @@ const AdminBookList = () => {
                 </ul>
               </div>
               <div>
+                {/* <button onClick={() => setDeleteBook(book.isbn)} className="Admin-edit-btn">Edit</button> */}
                 <button className="Admin-edit-btn">Edit</button>
-                <button className="Admin-delete-btn">Delete</button>
+                <button onClick={() => setDeleteBook(book.isbn)} className="Admin-delete-btn">Delete</button>
               </div>
             </div> 
           )

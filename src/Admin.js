@@ -6,6 +6,7 @@ import AddBook from "./AddBook";
 import { HashLink as Link } from 'react-router-hash-link';
 import "./Admin.css";
 import AdminBookList from "./AdminBookList";
+import NewMeeting from "./NewMeeting";
 const { validateIsbn } = require("./utilities/validateIsbn.js");
  
 const Admin = () => {
@@ -13,6 +14,7 @@ const Admin = () => {
     const [showBookAdded, setShowBookAdded] = useState(false);
     const [showAddForm, setShowAddForm] = useState(false);
     const [items, setItems] = useState(null);
+    const [deleteBook, setDeleteBook] = useState(null);
 
     return (
       <div>
@@ -56,7 +58,10 @@ const Admin = () => {
         </div>
         <div className="Admin-bookList">
           <div id="list"></div>
-          <AdminBookList/>
+            <AdminBookList deleteBook={deleteBook} setDeleteBook={setDeleteBook}/>
+        </div>
+        <div>
+          <NewMeeting/>
         </div>
       </div>
       

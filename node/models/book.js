@@ -67,12 +67,12 @@ class Book {
     if (!result.rows[0]) {
       throw new ExpressError(`Book with isbn ${isbnVal} not found`, 404);
     }
-    // const { isbn, title, synopsis, genre, publish_date, info_url, month_year, author } = result.rows[0];
-    // return new Book(isbn, title, synopsis, genre, publish_date, info_url, month_year, author);
-    return result.rows[0];
+    const { isbn, title, synopsis, genre, publish_date, info_url, month_year, author } = result.rows[0];
+    return new Book(isbn, title, synopsis, genre, publish_date, info_url, month_year, author);
   }
 
 
+  // adds new book to db and returns Book object
   static async add({isbn, title, synopsis, genre, publish_date, info_url, read_date, author}) {
     // check for duplicate isbn
     const isbnCheck = await db.query(
@@ -91,8 +91,8 @@ class Book {
     const result = await db.query(query, values);
     return new Book(result.rows[0]);
   }
-}
-  // // Updates company instance with given properties and returns updated company
+
+  // Updates book instance with given properties and returns updated book
   // async update(parameters) {
   //   // check for duplicate name
   //   const nameCheck = await db.query(
@@ -107,24 +107,16 @@ class Book {
   //   return result.rows[0];
   // }
 
-  // Deletes company from database
-//   async delete() {
-//     const response = await db.query(
-//       `DELETE FROM companies WHERE handle=$1
-//        RETURNING name`,
-//        [this.handle]
-//     );
-//     const message = `Company ${response.rows[0].name} deleted.`
-//     return message;
-//   }
-
-//   // returns job titles associated with the company object
-//   async getJobs() {
-//     const response = await db.query(
-//       `SELECT title FROM jobs WHERE company_handle='${this.handle}'`
-//     )
-//     return response.rows;
-//   }
-// }
+  // Deletes book from database
+  async delete() {
+    const response = await db.query(
+      `DELETE FROM books WHERE isbn=$1
+       RETURNING isbn`,
+       [this.isbn]
+    );
+    const message = `Book ${response.rows[0].isbn} deleted.`
+    return message;
+  }
+}
 
 module.exports = Book;

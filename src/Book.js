@@ -52,7 +52,7 @@ const Book = ({ match }) => {
             <li>Author: {item.author}</li>
             <li>Genre: {item.genre}</li>
             <li>Synopsis: {item.synopsis}</li>
-            <li>Read Date: {item.month_year}</li>
+            <li>Read Date: {item.read_date}</li>
             <li>Buy Link: <a href={item.info_url}>Click here</a></li>
             <li>Published: {item.publish_date}</li>
           </ul>

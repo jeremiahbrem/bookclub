@@ -2,7 +2,7 @@ const express = require("express");
 const router = new express.Router();
 // const db = require("../db");
 // const ExpressError = require("../helpers/expressError");
-const Book = require("../models/book.js");
+const Meeting = require("../models/meeting.js");
 // const jsonschema = require("jsonschema");
 // const newCompany = require("../schemas/newCompany.json");
 // const updateCompany = require("../schemas/updateCompany.json");
@@ -12,9 +12,8 @@ const Book = require("../models/book.js");
 // router.get("/", ensureLoggedIn, async function (req, res, next) {
 router.get("/", async function (req, res, next) {
   try {
-    const {title, author, read_date} = req.query
-    const response = await Book.getBooks(title, author, read_date);
-    return res.json({books: response});
+    const response = await Meeting.getMeetings();
+    return res.json({meetings: response});
   }
   catch (err) {
     return next(err);
@@ -22,27 +21,27 @@ router.get("/", async function (req, res, next) {
 });
 
 // returns single book
-router.get("/:isbn", async function (req, res, next) {
-  try {
-    const getBook = await Book.getBook(req.params.isbn);
-    // return res.json(
-    //   { 
-    //     book: {
-    //       isbn: getBook.isbn,
-    //       title: getBook.title,
-    //       synopsis: getBook.synopsis,
-    //       genre: getBook.genre,
-    //       publish_date: getBook.publish_date,
-    //       month_year: getBook.read_date,
-    //       author: getBook.author,
-    //       info_url: getBook.info_url
-    //       }
-    //   })    
-    return res.json({book: getBook})
-  } catch(err) {
-    return next(err);
-  }
-})
+// router.get("/:isbn", async function (req, res, next) {
+//   try {
+//     const getBook = await Book.getBook(req.params.isbn);
+//     // return res.json(
+//     //   { 
+//     //     book: {
+//     //       isbn: getBook.isbn,
+//     //       title: getBook.title,
+//     //       synopsis: getBook.synopsis,
+//     //       genre: getBook.genre,
+//     //       publish_date: getBook.publish_date,
+//     //       month_year: getBook.read_date,
+//     //       author: getBook.author,
+//     //       info_url: getBook.info_url
+//     //       }
+//     //   })    
+//     return res.json({book: getBook})
+//   } catch(err) {
+//     return next(err);
+//   }
+// })
 
 // creates and returns new book
 // router.post("/", ensureIsAdmin, async function (req, res, next) {
@@ -56,9 +55,9 @@ router.post("/", async function (req, res, next) {
     //   return next(error);
     // }  
     // delete req.body._token;
-    const book = await Book.add(req.body);
+    const meeting = await Meeting.add(req.body);
     
-    return res.status(201).json({book});
+    return res.status(201).json({meeting});
   } catch(err) {
     return next(err);
   }
@@ -85,14 +84,14 @@ router.post("/", async function (req, res, next) {
 //   }
 // })
 
-router.delete("/:isbn", async function (req, res, next) {
-  try {
-    const book = await Book.getBook(req.params.isbn);
-    const message = await book.delete();
-    return res.json({message});
-  } catch(err) {
-    return next(err);
-  }
-})
+// router.delete("/:isbn", async function (req, res, next) {
+//   try {
+//     const book = await Book.getBook(req.params.isbn);
+//     const message = await book.delete();
+//     return res.json({message});
+//   } catch(err) {
+//     return next(err);
+//   }
+// })
 
 module.exports = router;
