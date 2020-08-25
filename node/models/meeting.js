@@ -8,17 +8,18 @@ class Meeting {
 
   /* stores isbn and user edited book properties;
      can retrieve full book details from api */
-  constructor(date, isbn, description, link) {
+  constructor(date, book_id, description, link) {
     this.date = date;
-    this.isbn = isbn;
+    this.book_id = book_id;
     this.description = description;
+    this.link = link;
   }
 
   /* 
    */
   static async getMeetings() {
     const result = await db.query(
-      `SELECT isbn, description, link
+      `SELECT book_id, description, link
        TO_CHAR(
         date,
         'HH:MM Mon DD, YYYY'
@@ -49,12 +50,12 @@ class Meeting {
 
 
   // adds new book to db and returns Book object
-  static async add(date, isbn, description, link) {  
+  static async add({date, book_id, description, link}) {  
     let query = `INSERT INTO meetings 
-      (date, isbn, description, link)
+      (date, book_id, description, link)
       VALUES ($1, $2, $3, $4) RETURNING *`;
 
-    let values = [date, isbn, description, link];
+    let values = [date, book_id, description, link];
 
     const result = await db.query(query, values);
     return new Meeting(result.rows[0]);

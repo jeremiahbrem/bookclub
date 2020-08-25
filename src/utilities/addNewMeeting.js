@@ -1,15 +1,15 @@
-function addNewMeeting({isbn, title, synopsis, genre, publish_date, info_url, read_date, author}) {
+function addNewMeeting({date, book_id, description, link}) {
     // gathers year only from publish_date
-    publish_date = +publish_date.slice(-4);
+
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ isbn, title, synopsis, genre, publish_date, info_url, read_date, author })
+        body: JSON.stringify({ date, book_id, description, link })
     };
-    fetch('/db/api/books', requestOptions)
+    fetch('/db/api/meetings', requestOptions)
         .then(response => response.json())
-        .then(data => console.log(data.book))
+        .then(data => console.log(data.meeting))
         .catch(e => console.log(e));
 }
 
-module.exports = { addNewBook };
+module.exports = { addNewMeeting };

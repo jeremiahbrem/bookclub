@@ -8,7 +8,7 @@ class Book {
 
   /* stores isbn and user edited book properties;
      can retrieve full book details from api */
-  constructor(isbn, title, synopsis, genre, publish_date, info_url, read_date, author) {
+  constructor(id, isbn, title, synopsis, genre, publish_date, info_url, read_date, author) {
     this.isbn = isbn;
     this.title = title;
     this.synopsis = synopsis;
@@ -41,7 +41,7 @@ class Book {
     }
 
     const result = await db.query(
-      `SELECT isbn, synopsis, genre, 
+      `SELECT id, isbn, synopsis, genre, 
        TO_CHAR(
         read_date,
         'MON YYYY'
@@ -56,7 +56,7 @@ class Book {
   /* gets book by isbn and returns Book object */ 
   static async getBook(isbnVal) {
     const result = await db.query(
-      `SELECT isbn, title, synopsis, genre, publish_date, info_url, 
+      `SELECT id, isbn, title, synopsis, genre, publish_date, info_url, 
         TO_CHAR(
           read_date,
           'MON YYYY'
@@ -67,8 +67,8 @@ class Book {
     if (!result.rows[0]) {
       throw new ExpressError(`Book with isbn ${isbnVal} not found`, 404);
     }
-    const { isbn, title, synopsis, genre, publish_date, info_url, month_year, author } = result.rows[0];
-    return new Book(isbn, title, synopsis, genre, publish_date, info_url, month_year, author);
+    const { id, isbn, title, synopsis, genre, publish_date, info_url, month_year, author } = result.rows[0];
+    return new Book(id, isbn, title, synopsis, genre, publish_date, info_url, month_year, author);
   }
 
 

@@ -9,6 +9,7 @@ const morgan = require("morgan");
 const app = express();
 const cors = require("cors");
 const bookRoutes = require("./api/bookRoutes.js");
+const meetingRoutes = require("./api/meetingRoutes")
 // const authRoutes = require("./api/authRoutes.js");
 // const { authenticateJWT } = require("./middleware/auth.js");
 
@@ -24,6 +25,7 @@ app.use(cors());
 
 app.use(express.json());
 app.use("/db/api/books", bookRoutes);
+app.use("/db/api/meetings", meetingRoutes);
 // app.use("/", authRoutes);
 
 // add logging system

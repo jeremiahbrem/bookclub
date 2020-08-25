@@ -4,7 +4,10 @@ import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import "./NewMeeting.css";
 
+const { addNewMeeting } = require("./utilities/addNewMeeting.js");
+
 const NewMeeting = () => {
+  const [isbn, setIsbn] = useState("");  
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [url, setUrl] = useState("");
@@ -15,33 +18,33 @@ const NewMeeting = () => {
   function handleChange(event) {
     const target = event.target;
     const name = event.target.name;
-    if (name === 'date')
+    if (name === 'isbn')
+      setIsbn(target.value)
+    else if (name === 'date')
       setDate(target.value);
     else if (name === 'time')
       setTime(target.value);
     else 
       setUrl(target.value);  
-    console.log(JSON.parse(JSON.stringify(convertToRaw(editorState.getCurrentContent()))))
   }
   
   function handleSubmit(event) {
     event.preventDefault();
-    // addNewBook({
-    //   isbn, 
-    //   title: items.details.title, 
-    //   synopsis, 
-    //   genre, 
-    //   publish_date: items.details.publish_date,
-    //   info_url: items.info_url, 
-    //   read_date, 
-    //   author
-    // });
-    // setShowBookAdded(true);
-    // setShowAddForm(false);
-    // setSynopsis("");
-    // setGenre("");
-    // setReadDate("");
-    // setAuthor("");
+    try {
+      addNewMeeting({
+        date: `${date} ${time}`,  
+        isbn,  
+        description: JSON.stringify(convertToRaw(editorState.getCurrentContent())), 
+        url
+      })
+    } catch(error) {
+        console.log(error);
+    }
+    setDate("");
+    setTime("");
+    setIsbn("");
+    setUrl("");
+    setEditorState("");
   }
 
   return (
@@ -50,7 +53,7 @@ const NewMeeting = () => {
         <div className="NewMeeting-input-container">
           <h3 className="NewMeeting-head">Add New Meeting</h3>
           <label className="NewMeeting-label">Book Reading</label>
-          <input className="NewMeeting-input" type="text" name="book" 
+          <input className="NewMeeting-input" type="text" name="isbn" 
             onChange={handleChange} />
         
           <label className="NewMeeting-label">Date</label>
