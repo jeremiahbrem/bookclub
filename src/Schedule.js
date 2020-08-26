@@ -3,7 +3,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertFromRaw } from "draft-js";
 import "./Schedule.css";
 
-const Schedule = () => {
+const Schedule = ({setSelectedMeeting, selectedMeeting}) => {
   
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -30,7 +30,7 @@ const Schedule = () => {
       }
     )
     return () => mounted = false;
-  }, [setItems, setIsLoaded, setDbError])
+  }, [])
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -47,6 +47,7 @@ const Schedule = () => {
         {items.map(meeting => {
           return (  
             <div key={meeting.id} id={meeting.id} onClick={() => {
+              setSelectedMeeting(null);
               setSelected(selected === meeting.id ? null : meeting.id);
               setEditorState(
                 EditorState.createWithContent(convertFromRaw(JSON.parse(meeting.description)))
@@ -63,7 +64,7 @@ const Schedule = () => {
                         meeting.meet_date}</li>
                   <li className="Schedule-link">Link: <a href={meeting.link}>{meeting.link}</a></li>
                 </ul>
-                {selected === meeting.id &&
+                {(selectedMeeting === meeting.id || selected === meeting.id) &&
                 <div className="Schedule-description">
                       <Editor 
                         editorState={editorState} 

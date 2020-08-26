@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css"
-import { Route, BrowserRouter} from "react-router-dom";
+import { Route, BrowserRouter } from "react-router-dom";
 import Home from "./Home";
 import Books from "./Books";
 import Schedule from "./Schedule";
@@ -13,6 +13,7 @@ import Admin from "./Admin";
 
 function App () {
     const [open, setOpen] = useState(false);
+    const [selectedMeeting, setSelectedMeeting] = useState(null);
    
     return (
       <BrowserRouter>
@@ -31,11 +32,16 @@ function App () {
           </div>
          
           <div className="content">
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/" render={props => 
+              (<Home {...props} setSelectedMeeting={setSelectedMeeting}/>)}/>
             <Route path="/books" component={Books}/>
             <Route exact path="/book/:isbn" component={Book}/>
             <Route path="/contact" component={Contact}/>
-            <Route path="/schedule" component={Schedule}/>
+            <Route path="/schedule" render={props => 
+              (<Schedule {...props} 
+                selectedMeeting={selectedMeeting}
+                setSelectedMeeting={setSelectedMeeting}
+              />)}/>
             <Route path="/login" component={Login}/>
             <Route path="/admin" component={Admin}/>
           </div>

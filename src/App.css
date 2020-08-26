@@ -47,7 +47,7 @@
     text-decoration: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 615px) {
     .headline h1 {
         font-size: 30px;
         margin-top: 25px;

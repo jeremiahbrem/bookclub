@@ -1,0 +1,68 @@
+.UpcomingMeetings {
+    text-align: center;
+    padding: 30px;
+}
+
+.UpcomingMeetings > h2 {
+    font-family: 'Dancing script', cursive;
+    font-size: 40px;
+    margin-top: 90px;
+}
+
+.UpcomingMeetings-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, .6);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.UpcomingMeetings-cont {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.UpcomingMeetings-details li{
+    list-style: none;
+}
+
+.UpcomingMeetings-date {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    color: white;
+}
+
+.UpcomingMeetings-link {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: white;
+}
+
+.UpcomingMeetings a {
+    color: lightseagreen;
+}
+
+.UpcomingMeetings-description {
+    max-width: 350px;
+    background-color: lightsteelblue;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.UpcomingMeetings-img {
+    cursor: pointer;
+}
+
+@media (max-width: 500px) {
+    .UpcomingMeetings-date {
+        font-size: 20px;
+    }
+}

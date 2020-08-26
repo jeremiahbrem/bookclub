@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import SearchForm from "./SearchForm";
 import GetNewBook from "./GetNewBook";
 import AddBook from "./AddBook";
-import { HashLink as Link } from 'react-router-hash-link';
 import "./Admin.css";
 import AdminBookList from "./AdminBookList";
 import NewMeeting from "./NewMeeting";
 import AdminMeetings from "./AdminMeetings";
 import EditMeeting from "./EditMeeting";
 import EditBook from "./EditBook";
+
 const { validateIsbn } = require("./utilities/validateIsbn.js");
  
 const Admin = () => {
