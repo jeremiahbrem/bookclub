@@ -77,8 +77,7 @@ const NewMeeting = ({
         link={link}
         selectValue={selectValue}
         setSelectValue={setSelectValue} 
-      />
-      {showMeetingAdded && <div className="meeting-added">Meeting added!</div>}  
+      /> 
     </div>
   );
 }

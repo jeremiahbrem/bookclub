@@ -1,3 +1,30 @@
+##Getting Started with Book Club:
+
+You'll need to have Postgresql installed:
+[https://www.postgresql.org/download](https://www.postgresql.org/download)  
+
+Download Postgress.App (Mac)  
+
+Open Postgres, click Initialize, and make sure Postgres server is running.  
+
+On command line, create a new database, 'bookclub'.
+
+`createdb bookclub`
+
+Make sure you are in the root project folder of bookclub, and seed the database.
+
+`psql bookclub < db/seed.sql`
+
+Make sure all project dependencies are installed, and that you are in `/node` folder of the project to start Node server.  
+
+`cd node`  
+`npm install`  
+`node server.js`
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
+import BookSort from "./BookSort";
 import "./Books.css";
  
 const Books = () => {
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
+  const [sort, setSort] = useState("default");
 
   useEffect(() => {
+
     let mounted = true;
-    fetch(`/db/api/books`)
+    fetch(`/db/api/books/`)
     .then(res => res.json())
     .then(
       (result) => {
@@ -24,7 +27,7 @@ const Books = () => {
       }
     )
     return () => mounted = false;
-  })
+  },[sort])
   
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -37,6 +40,7 @@ const Books = () => {
   } else {
     return (
       <div className="Books">
+        <BookSort sort={sort} setSort={setSort}/>
         <div className="Books-bg-image"></div> 
         <div className="Books-cont">
           {items.map(book => {
