@@ -1,0 +1,37 @@
+.EditBook-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.EditBook-head {
+    font-family: Arial, Helvetica, sans-serif;
+    position: fixed;
+    top: 120px;
+    left: 30px;
+}
+
+.EditBook-img {
+    margin-top: 60px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.EditBook-details {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .EditBook-img, .EditBook-details {
+        width: 100%;
+    }
+}

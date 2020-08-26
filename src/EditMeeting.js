@@ -5,7 +5,14 @@ import "./EditMeeting.css";
 
 const { updateMeeting } = require("./utilities/updateMeeting.js");
  
-const EditMeeting = ({ id, setShowEditMeeting, setShowMeetings, setShowMeetingForm }) => {
+const EditMeeting = ({ 
+    id, 
+    setShowEditMeeting, 
+    setShowMeetings, 
+    setShowMeetingForm,
+    selectValue,
+    setSelectValue 
+  }) => {
 
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -14,6 +21,7 @@ const EditMeeting = ({ id, setShowEditMeeting, setShowMeetings, setShowMeetingFo
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [link, setLink] = useState("");
+
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty(),
   );
@@ -48,14 +56,14 @@ const EditMeeting = ({ id, setShowEditMeeting, setShowMeetings, setShowMeetingFo
   function handleChange(event) {
     const target = event.target;
     const name = event.target.name;
-    if (name === 'isbn')
-      setBookId(target.value)
-    else if (name === 'date')
+  
+    if (name === 'date')
       setDate(target.value);
     else if (name === 'time')
       setTime(target.value);
     else 
-      setLink(target.value);  
+      setLink(target.value); 
+    setBookId(selectValue)   
   }
 
   function handleSubmit(event) {
@@ -70,6 +78,7 @@ const EditMeeting = ({ id, setShowEditMeeting, setShowMeetings, setShowMeetingFo
     setShowEditMeeting(false);
     setShowMeetings(true);
     setShowMeetingForm(false);
+    setSelectValue("default");
   }
 
   if (error) {
@@ -93,6 +102,9 @@ const EditMeeting = ({ id, setShowEditMeeting, setShowMeetings, setShowMeetingFo
           date={date}
           time={time}
           link={link}
+          selectValue={selectValue}
+          setSelectValue={setSelectValue}
+          id={id}
       />
       <button className="EditMeeting-cancel" onClick={() => {
           setShowEditMeeting(false);

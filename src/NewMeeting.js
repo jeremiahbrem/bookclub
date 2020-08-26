@@ -7,7 +7,15 @@ import "./MeetingForm.css";
 
 const { addNewMeeting } = require("./utilities/addNewMeeting.js");
 
-const NewMeeting = () => {
+const NewMeeting = ({
+    selectValue, 
+    setSelectValue, 
+    setShowMeetingAdded, 
+    setShowBooks, 
+    showMeetingAdded,
+    setShowMeetingForm
+  }) => {
+
   const [book_id, setBookId] = useState("");  
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -19,14 +27,14 @@ const NewMeeting = () => {
   function handleChange(event) {
     const target = event.target;
     const name = event.target.name;
-    if (name === 'book_id')
-      setBookId(target.value)
-    else if (name === 'date')
+    
+    if (name === 'date')
       setDate(target.value);
     else if (name === 'time')
       setTime(target.value);
     else 
       setLink(target.value);  
+    setBookId(selectValue);  
   }
   
   function handleSubmit(event) {
@@ -41,11 +49,18 @@ const NewMeeting = () => {
     } catch(error) {
         console.log(error);
     }
+    setShowMeetingForm(false);
+    setShowMeetingAdded(true);
+    setTimeout(() => {
+      setShowMeetingAdded(false);
+      setShowBooks(true);
+    }, 3000);
     setDate("");
     setTime("");
     setBookId("");
     setLink("");
     setEditorState("");
+    setSelectValue("default");
   }
 
   return (
@@ -60,7 +75,10 @@ const NewMeeting = () => {
         date={date}
         time={time}
         link={link}
-      />  
+        selectValue={selectValue}
+        setSelectValue={setSelectValue} 
+      />
+      {showMeetingAdded && <div className="meeting-added">Meeting added!</div>}  
     </div>
   );
 }

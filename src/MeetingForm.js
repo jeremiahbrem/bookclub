@@ -1,5 +1,6 @@
 import React from "react";
 import { Editor } from 'react-draft-wysiwyg';
+import MeetingBookSelect from "./MeetingBookSelect";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 const MeetingForm = ({editorState, setEditorState, handleSubmit, handleChange, ...props}) => {
@@ -9,12 +10,14 @@ const MeetingForm = ({editorState, setEditorState, handleSubmit, handleChange, .
         <div className="MeetingForm-input-container">
             
             <label className="MeetingForm-label">Book Reading</label>
-            <select>
-                
-            </select>
-            <input className="MeetingForm-input" type="text" name="book_id" 
-            value={props.book_id} onChange={handleChange} />
         
+            <div className="MeetingForm-select"><MeetingBookSelect 
+              id={props.id} 
+              selectValue={props.selectValue}
+              setSelectValue={props.setSelectValue}
+              />
+            </div>
+                   
             <label className="MeetingForm-label">Date</label>
             <input className="MeetingForm-input" type="date" name="date" 
             value={props.date} onChange={handleChange} />

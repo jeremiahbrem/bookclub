@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
-import "./BookSlider.css";
+// import "./BookSlider.css";
  
-const BookSelect = () => {
+const MeetingBookSelect = ({id, selectValue, setSelectValue}) => {
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
- 
 
   useEffect(() => {
     let mounted = true;
@@ -25,7 +23,11 @@ const BookSelect = () => {
       }
     )
     return () => mounted = false;
-  })
+  }, []);
+
+  function handleChange(event) {
+    setSelectValue(event.target.value);
+  }
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -33,15 +35,26 @@ const BookSelect = () => {
     return <div>Loading...</div>;
   } else if (!items) {
     return (
-      <div className="BookSlider"></div>
+      <div className="BookSelect">None</div>
     );
   } else {
     return (
-      <div className="BookSlider">
+      <div className="BookSelect">
+        <select value={selectValue} onChange={handleChange} 
+          name="book_id" id="book_id" className="Select" placeholder="Select book">
+          <option value="default" disabled>Select book</option>  
+          {items.map(book => {
+            return (
+              <option key={book.isbn} value={book.id}>
+                {book.title.length > 40 ? book.title.slice(0,40) + '...' : book.title}
+              </option>
+            )
+          })}
+        </select>
       </div>
     );
   }
 }
 
  
-export default BookSelect;
+export default MeetingBookSelect;

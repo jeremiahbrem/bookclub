@@ -8,14 +8,13 @@ const AdminMeetings = ({
   setMeetingId, 
   setShowEditMeeting,
   setShowMeetings,
-  setShowMeetingForm
+  setShowMeetingForm,
+  setSelectValue
   }) => {
   
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
-  
-  setShowEditMeeting(false);
 
   useEffect(() => {
     let mounted = true;
@@ -70,6 +69,7 @@ const AdminMeetings = ({
               <div>
                 <button onClick={() => {
                   setMeetingId(meeting.id);
+                  setSelectValue(meeting.book_id)
                   setShowMeetings(false);
                   setShowMeetingForm(true);
                   setShowEditMeeting(true);

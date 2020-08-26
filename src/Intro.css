@@ -10,17 +10,17 @@
     margin-top: 90px;
 }
 
-p {
+.Intro p {
     font-family: Arial;
     font-size: 20px;
     line-height: 3rem;
 }
 
 @media (max-width: 600px) {
-    p {
+    .Intro p {
         line-height: 2rem;
     }
-    h2 {
+    .Intro h2 {
         margin-top: 60px;
     }
 }

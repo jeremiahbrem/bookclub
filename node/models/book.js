@@ -41,7 +41,7 @@ class Book {
     }
 
     const result = await db.query(
-      `SELECT id, isbn, synopsis, genre, 
+      `SELECT id, isbn, title, synopsis, genre, publish_date, info_url,
        TO_CHAR(
         read_date,
         'MON YYYY'

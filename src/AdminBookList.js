@@ -3,7 +3,13 @@ import React, { useState, useEffect } from "react";
 import DeleteBook from "./DeleteBook";
 import "./AdminBookList.css";
  
-const AdminBookList = ({deleteBook, setDeleteBook}) => {
+const AdminBookList = ({
+    deleteBook,
+    setIsbn,
+    setDeleteBook,
+    setShowBooks,
+    setShowEditBookForm
+  }) => {
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
@@ -54,7 +60,11 @@ const AdminBookList = ({deleteBook, setDeleteBook}) => {
                 </ul>
               </div>
               <div>
-                <button className="Admin-edit-btn">Edit</button>
+                <button onClick={() => {
+                  setShowBooks(false);
+                  setIsbn(book.isbn);
+                  setShowEditBookForm(true);
+                  }} className="Admin-edit-btn">Edit</button>
                 <button onClick={() => setDeleteBook(book.isbn)} className="Admin-delete-btn">Delete</button>
               </div>
             </div> 

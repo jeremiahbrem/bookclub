@@ -38,7 +38,7 @@ class Meeting {
       `SELECT id, book_id, description, link,
       TO_CHAR(
         date,
-        'HH:MI YYYY-MM-DD'
+        'HH24:MI YYYY-MM-DD'
        ) meet_date
         FROM meetings WHERE id='${meetingId}'`
     );
