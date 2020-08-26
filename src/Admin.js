@@ -14,22 +14,43 @@ const Admin = () => {
   const [isbn, setIsbn] = useState("");
   const [showBookAdded, setShowBookAdded] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [showSearch, setShowSearch] = useState(true);
+  const [showBooks, setShowBooks] = useState(false);
+  const [showMeetingForm, setShowMeetingForm] = useState(false);
   const [items, setItems] = useState(null);
   const [deleteBook, setDeleteBook] = useState(null);
   const [deleteMeeting, setDeleteMeeting] = useState(null);
   const [meetingId, setMeetingId] = useState(null);
   const [showEditMeeting, setShowEditMeeting] = useState(false);
-  const [meetings, setMeetings] = useState(null);
+  const [showMeetings, setShowMeetings] = useState(false);
 
   return (
     <div>
       <div className="admin-navbar">
-        <Link to="/admin/#search">Search</Link>
-        <Link to="/admin/#list">List</Link>
-        <Link to="/admin/#schedule">Schedule</Link>
+        <p onClick={() => {
+          setShowSearch(true);
+          setShowBooks(false);
+          setShowMeetingForm(false);
+          setShowMeetings(false);
+        }}>Search</p>
+        
+        <p onClick={() => {
+          setShowSearch(false);
+          setShowBooks(true);
+          setShowMeetingForm(false);
+          setShowMeetings(false);
+        }}>Books</p>
+        
+        <p onClick={() => {
+          setShowSearch(false);
+          setShowBooks(false);
+          setShowMeetingForm(false);
+          setShowMeetings(true);
+        }}>Meetings</p>
       </div>
+
+      {showSearch &&
       <div className="Admin-new-book">
-        <div id="search"></div>
         <h3 className="Admin-search-head">Search New Book</h3>
         <div className="Admin-search-form">
           <SearchForm 
@@ -60,30 +81,44 @@ const Admin = () => {
           />  
           }
         </div>  
-      </div>
-      <div className="Admin-bookList">
-        <div id="list"></div>
-          <AdminBookList deleteBook={deleteBook} setDeleteBook={setDeleteBook}/>
-      </div>
-      <div>
-        <div id="schedule"></div>
-        {showEditMeeting ? <EditMeeting id={meetingId} setShowEditMeeting={setShowEditMeeting}/> : 
-          <NewMeeting setMeetings={setMeetings} meetings={meetings}/>
-        }
-      </div>
-      <div>
-        <AdminMeetings 
-          deleteMeeting={deleteMeeting} 
-          setDeleteMeeting={setDeleteMeeting}
-          setMeetingId={setMeetingId}
-          setShowEditMeeting={setShowEditMeeting}
-          setMeetings={setMeetings}
-          meetings={meetings}
-          />
-      </div>
-    </div>
+      </div>}
+
+      {showBooks &&
+      <div className="Admin-booklist">
+        <AdminBookList deleteBook={deleteBook} setDeleteBook={setDeleteBook}/>
+      </div>}
+
+      {showMeetings &&
+      <div className="Admin-meetings">
+        
+        {
+          <AdminMeetings 
+            deleteMeeting={deleteMeeting} 
+            setDeleteMeeting={setDeleteMeeting}
+            setMeetingId={setMeetingId}
+            setShowEditMeeting={setShowEditMeeting}
+            setShowMeetings={setShowMeetings}
+            setShowMeetingForm={setShowMeetingForm}
+            />
+        }    
+      </div>}
+
+      {showMeetingForm &&
+      <div className="Admin-meeting-form-cont">
+        <div id="Admin-meeting-form">
+          {showEditMeeting ? <EditMeeting 
+            id={meetingId} 
+            setShowEditMeeting={setShowEditMeeting}
+            setShowMeetings={setShowMeetings}
+            setShowMeetingForm={setShowMeetingForm} /> : 
+            <NewMeeting />
+          }
+        </div>
+      </div>}
+    </div>  
+  )  
+}  
     
-  )
-}
+
 
   export default Admin;

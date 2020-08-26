@@ -44,7 +44,7 @@
 }
 
 .Admin-list-head {
-    position: absolute;
-    top: 0px;
+    position: fixed;
+    top: 130px;
     font-family: Arial, Helvetica, sans-serif;
 }

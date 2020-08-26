@@ -7,7 +7,7 @@ import "./MeetingForm.css";
 
 const { addNewMeeting } = require("./utilities/addNewMeeting.js");
 
-const NewMeeting = ({meetings, setMeetings}) => {
+const NewMeeting = () => {
   const [book_id, setBookId] = useState("");  
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -31,9 +31,8 @@ const NewMeeting = ({meetings, setMeetings}) => {
   
   function handleSubmit(event) {
     event.preventDefault();
-    let id;
     try {
-      id = addNewMeeting({
+      addNewMeeting({
         date: `${date} ${time}`,  
         book_id,  
         description: JSON.stringify(convertToRaw(editorState.getCurrentContent())), 
@@ -47,7 +46,6 @@ const NewMeeting = ({meetings, setMeetings}) => {
     setBookId("");
     setLink("");
     setEditorState("");
-    setMeetings(meetings.push(id))
   }
 
   return (

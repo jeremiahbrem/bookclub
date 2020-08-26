@@ -5,7 +5,7 @@ import "./EditMeeting.css";
 
 const { updateMeeting } = require("./utilities/updateMeeting.js");
  
-const EditMeeting = ({ id, setShowEditMeeting }) => {
+const EditMeeting = ({ id, setShowEditMeeting, setShowMeetings, setShowMeetingForm }) => {
 
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,14 +27,14 @@ const EditMeeting = ({ id, setShowEditMeeting }) => {
         if (mounted) {
           const resp = result.meeting;
           setItem(resp);
-          setEditorState(
-            EditorState.createWithContent(convertFromRaw(JSON.parse(resp.description)))
-          );
           setBookId(resp.book_id);
           setDate(resp.date.slice(6))
           setTime(resp.date.slice(0,5));
           setLink(resp.link);
           setIsLoaded(true);
+          setEditorState(
+           EditorState.createWithContent(convertFromRaw(JSON.parse(resp.description)))
+          );
         }
       })
     .catch((error) => {
@@ -43,7 +43,7 @@ const EditMeeting = ({ id, setShowEditMeeting }) => {
       }
     )
     return () => mounted = false;
-  },[id, item, setItem, setBookId, setDate, setTime, setLink, setIsLoaded])
+  },[id])
 
   function handleChange(event) {
     const target = event.target;
@@ -68,6 +68,8 @@ const EditMeeting = ({ id, setShowEditMeeting }) => {
       link: link
     });
     setShowEditMeeting(false);
+    setShowMeetings(true);
+    setShowMeetingForm(false);
   }
 
   if (error) {
@@ -92,7 +94,12 @@ const EditMeeting = ({ id, setShowEditMeeting }) => {
           time={time}
           link={link}
       />
-      <button className="EditMeeting-cancel" onClick={() => setShowEditMeeting(false)}>Cancel</button>
+      <button className="EditMeeting-cancel" onClick={() => {
+          setShowEditMeeting(false);
+          setShowMeetings(true)
+          setShowMeetingForm(false);
+        }}>Cancel
+      </button>
       </div>
     );  
   }

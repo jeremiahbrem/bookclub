@@ -6,13 +6,16 @@ const AdminMeetings = ({
   deleteMeeting, 
   setDeleteMeeting, 
   setMeetingId, 
-  setShowEditMeeting, 
-  setMeetings
+  setShowEditMeeting,
+  setShowMeetings,
+  setShowMeetingForm
   }) => {
   
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
+  
+  setShowEditMeeting(false);
 
   useEffect(() => {
     let mounted = true;
@@ -23,7 +26,6 @@ const AdminMeetings = ({
         if (mounted) {
           setItems(result.meetings);
           setIsLoaded(true);
-          setMeetings(result.meetings.map(m => m.id));
         }
       })
     .catch((error) => {
@@ -32,7 +34,7 @@ const AdminMeetings = ({
       }
     )
     return () => mounted = false;
-  }, [setItems, setIsLoaded, setDbError, setMeetings])
+  }, [setItems, setIsLoaded, setDbError])
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -46,6 +48,11 @@ const AdminMeetings = ({
     return (
       <div className="AdminMeetings">
         <h3 className="AdminMeetings-head">Edit Meetings</h3>
+        <button onClick={() => {
+            setShowMeetingForm(true);
+            setShowMeetings(false);
+          }} 
+          className="AdminMeeting-new">Add New</button>
         {items.map(meeting => {
           if (deleteMeeting === meeting.id) {
             return <div><DeleteMeeting id={meeting.id}/></div>
@@ -62,12 +69,13 @@ const AdminMeetings = ({
               </div>
               <div>
                 <button onClick={() => {
-                    setMeetingId(meeting.id);
-                    setShowEditMeeting(true);
-                    window.location.href='#schedule';
+                  setMeetingId(meeting.id);
+                  setShowMeetings(false);
+                  setShowMeetingForm(true);
+                  setShowEditMeeting(true);
                   }}
                   className="AdminMeetings-edit-btn">Edit
-                </button>
+                </button> 
                 <button onClick={() => setDeleteMeeting(meeting.id)} className="Admin-delete-btn">Delete</button>
               </div>
             </div> 

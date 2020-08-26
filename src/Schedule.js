@@ -1,28 +1,83 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, convertFromRaw } from "draft-js";
 import "./Schedule.css";
 
-const Schedule = ({setIsbn, setShowBookAdded}) => {
-  const [input, setInput] = useState("");
+const Schedule = () => {
   
-  function handleChange(event) {
-    setInput(event.target.value);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    setIsbn(input);
-    setShowBookAdded(false)
-  }
-
-  return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit}>
-        <label className="label">Search ISBN</label>
-        <input className="input" type="text" value={input} onChange={handleChange} required/>
-        <input className="button" type="submit" value="Submit" />
-      </form>
-    </div>
+  const [error, setDbError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState(null);
+  const [selected, setSelected] = useState(null);
+  const [editorState, setEditorState] = useState(
+    () => EditorState.createEmpty(),
   );
+
+  useEffect(() => {
+    let mounted = true;
+    fetch(`/db/api/meetings`)
+    .then(res => res.json())
+    .then(
+      (result) => {
+        if (mounted) {
+          setItems(result.meetings);
+          setIsLoaded(true);
+        }
+      })
+    .catch((error) => {
+        setDbError(error);
+        setIsLoaded(true);
+      }
+    )
+    return () => mounted = false;
+  }, [setItems, setIsLoaded, setDbError])
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else if (!items) {
+    return (
+      <div className="Schedule"></div>
+    );
+  } else {
+    return (
+      <div className="Schedule">
+        <h3 className="Schedule-head">Meetings</h3>
+        {items.map(meeting => {
+          return (  
+            <div key={meeting.id} id={meeting.id} onClick={() => {
+              setSelected(selected === meeting.id ? null : meeting.id);
+              setEditorState(
+                EditorState.createWithContent(convertFromRaw(JSON.parse(meeting.description)))
+               );
+            }} className="Schedule-meeting">   
+              <div className="Schedule-img">
+                <img
+                  className="Schedule-slider-img" 
+                  src={`/b/isbn/${meeting.isbn}-S.jpg`} alt=""/>
+              </div>
+              <div className="Schedule-details">
+                <ul>
+                  <li className="Schedule-date">{meeting.meet_date[0] === '0' ? meeting.meet_date.slice(1) : 
+                        meeting.meet_date}</li>
+                  <li className="Schedule-link">Link: <a href={meeting.link}>{meeting.link}</a></li>
+                </ul>
+                {selected === meeting.id &&
+                <div className="Schedule-description">
+                      <Editor 
+                        editorState={editorState} 
+                        readOnly={true}
+                        toolbarHidden
+                      />
+                </div>}
+              </div>
+            </div>
+          )
+         })}
+      </div>
+    );
+  }
 }
 
   export default Schedule;
