@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS books (
 CREATE TABLE IF NOT EXISTS meetings (
     id SERIAL PRIMARY KEY,
     date TIMESTAMP NOT NULL,
-    book_id INT REFERENCES books,
+    book_id INT REFERENCES books ON DELETE SET NULL,
     description TEXT,
     link TEXT 
 );
