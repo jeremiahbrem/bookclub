@@ -10,7 +10,7 @@ const BookSort = ({setSort, sort} ) => {
   return (
   <div className="BookSort">
     <select value={sort} onChange={handleChange}>
-      <option value="default">Sort by</option>
+      <option value="">Sort by</option>
       <option value="title">Title</option>
       <option value="author">Author</option>
       <option value="read_date">Read Date</option>

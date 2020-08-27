@@ -7,12 +7,12 @@ const Books = () => {
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
-  const [sort, setSort] = useState("default");
+  const [sort, setSort] = useState("");
 
   useEffect(() => {
 
     let mounted = true;
-    fetch(`/db/api/books/`)
+    fetch(`/db/api/books?sort=${sort}`)
     .then(res => res.json())
     .then(
       (result) => {

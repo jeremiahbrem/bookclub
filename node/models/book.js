@@ -41,7 +41,7 @@ class Book {
       read_date = `${read_date.year}-${read_date.month}-01`;
       searchQuery += `${queryStart} read_date LIKE '%${read_date}%'`;
     }
-    console.log(`sort: ${sort}`);
+    
     const result = await db.query(
       `SELECT id, isbn, title, synopsis, genre, publish_date, info_url,
        TO_CHAR(

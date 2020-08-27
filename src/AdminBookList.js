@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-// import { COVER_BASE_URL } from "./config";
-import DeleteBook from "./DeleteBook";
 import "./AdminBookList.css";
+const { deleteBookFromDb } = require("./utilities/deleteBook.js");
  
 const AdminBookList = ({
     deleteBook,
@@ -47,28 +46,31 @@ const AdminBookList = ({
         <h3 className="Admin-list-head">Edit Booklist</h3>
         {items.map(book => {
           if (deleteBook === book.isbn) {
-            return <div><DeleteBook isbn={book.isbn}/></div>
+            deleteBookFromDb(book.isbn);
+            return null;
           }
-          return (  
-            <div className="AdminBookList-book" key={book.isbn}>    
-              <div className="Admin-book-img">
-                <img className="Admin-slider-img" src={`/b/isbn/${book.isbn}-M.jpg`} alt=""/>
-              </div>
-              <div className="Admin-book-read">
-                <ul>
-                  <li>{book.month_year}</li>
-                </ul>
-              </div>
-              <div>
-                <button onClick={() => {
-                  setShowBooks(false);
-                  setIsbn(book.isbn);
-                  setShowEditBookForm(true);
-                  }} className="Admin-edit-btn">Edit</button>
-                <button onClick={() => setDeleteBook(book.isbn)} className="Admin-delete-btn">Delete</button>
-              </div>
-            </div> 
-          )
+          else {
+            return (  
+              <div className="AdminBookList-book" key={book.isbn}>    
+                <div className="Admin-book-img">
+                  <img className="Admin-slider-img" src={`/b/isbn/${book.isbn}-M.jpg`} alt=""/>
+                </div>
+                <div className="Admin-book-read">
+                  <ul>
+                    <li>{book.month_year}</li>
+                  </ul>
+                </div>
+                <div>
+                  <button onClick={() => {
+                    setShowBooks(false);
+                    setIsbn(book.isbn);
+                    setShowEditBookForm(true);
+                    }} className="Admin-edit-btn">Edit</button>
+                  <button onClick={() => setDeleteBook(book.isbn)} className="Admin-delete-btn">Delete</button>
+                </div>
+              </div> 
+            )
+          } 
          })}
       </div>
     );
