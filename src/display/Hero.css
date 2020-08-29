@@ -11,8 +11,6 @@
 .Hero-container {
     background-color: white;
     height: 100vh;
-    visibility: visible;
-    transition: visibility .4s, opacity .4s;
 }
 
 .Hero-text {
@@ -66,16 +64,6 @@
     bottom: 20px;
     z-index: 2;
 }
- 
- .App-show {
-     visibility: visible;
-     opacity: 1;
- }
-
- .App-hidden {
-     visibility: hidden;
-     opacity: 0;
- }
 
 @media (max-width: 850px) {
     .Hero {

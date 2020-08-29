@@ -1,6 +1,7 @@
 import React from "react";
 import "./Intro.css";
  
+// component for intro section with image and text fields
 const Intro = () => {
   return (
     <div className="Intro">

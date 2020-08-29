@@ -1,8 +1,4 @@
-.App-transition {
-    transition: visibility .4s;
-}
- 
- .App-show {
+.App-show {
      visibility: visible;
  }
 
@@ -51,6 +47,7 @@
 
  .navbar-user-icon, .navbar-sunrise-icon {
      margin-top: 5px;
+     margin-left: 20px;
  }
 
  .navbar-day {

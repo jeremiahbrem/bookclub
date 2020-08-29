@@ -1,0 +1,35 @@
+.BookQuote {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    height: 400px;
+    padding: 10px;
+}
+
+.BookQuote-text {
+    color: #1C0063;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 37px;
+    width: 898px;
+    text-align: center;
+}
+
+.BookQuote span {
+    color: #2BBD66; 
+}
+
+@media (max-width: 1090px) {
+    .BookQuote-text {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 450px) {
+    .BookQuote-text {
+        font-size: 20px;
+    }
+}
+

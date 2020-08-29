@@ -1,6 +1,6 @@
--- DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS meetings;
--- DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS books;
 
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS books (
     genre VARCHAR(30),
     author VARCHAR(50),
     publish_date INTEGER,
-    info_url TEXT
+    info_url TEXT,
+    price MONEY
 );
 
 CREATE TABLE IF NOT EXISTS meetings (

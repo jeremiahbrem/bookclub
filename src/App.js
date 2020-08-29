@@ -11,8 +11,10 @@ import Login from "./Login";
 import Admin from "./Admin";
 import NavBar from "./display/Navbar";
 function App () {
+    // sets state for opening and closing menu
     const [open, setOpen] = useState(false);
     const [selectedMeeting, setSelectedMeeting] = useState(null);
+    // sets state for user scroll position, to change navbar background color
     const [scroll, setScroll] = useState(0);
   
     return (
@@ -33,8 +35,8 @@ function App () {
               />)}/>
             <Route path="/login" component={Login}/>
             <Route path="/admin" component={Admin}/>
-          </div>
-        </div>
+          </div>
+        </div>
       </BrowserRouter>
         
     );

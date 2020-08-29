@@ -1,16 +1,20 @@
 import React from "react";
 import Intro from "./Intro";
 import Hero from "./display/Hero";
+import BookQuote from "./BookQuote";
 import BookSlider from "./BookSlider";
 import UpcomingMeetings from "./UpcomingMeetings";
+import "./Home.css";
  
+// component for home page
 const Home = ({setSelectedMeeting, open}) => {
   
     return (
-      <div>
-        <Hero open={open}/>   
+      <div className={open ? "Home Home-hidden" : "Home Home-show"}>
+        <Hero/>   
         <Intro/>
-        <BookSlider />
+        <BookQuote/>
+        <BookSlider/>
         <UpcomingMeetings setSelectedMeeting={setSelectedMeeting} />
       </div>
     );

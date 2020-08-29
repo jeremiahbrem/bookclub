@@ -1,9 +1,10 @@
 import React from "react";
 import "./Hero.css";
 
+// component for Hero image and text
 const Hero = (props) => {    
   return(
-    <div className={`Hero-container ${props.open ? "App-hidden" : "App-show"}`}>
+    <div className="Hero-container">
       <div className="Hero-text">
         <div className="Hero-text-line">The person, be it gentleman or lady,</div>
         <div className="Hero-text-line">who has not pleasure in a good novel,</div>
