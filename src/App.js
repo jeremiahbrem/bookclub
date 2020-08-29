@@ -6,34 +6,23 @@ import Books from "./Books";
 import Schedule from "./Schedule";
 import Contact from "./Contact";
 import Book from "./Book";
-import Burger from "./display/Burger";
 import Menu from "./display/Menu";
 import Login from "./Login";
 import Admin from "./Admin";
-
+import NavBar from "./display/Navbar";
 function App () {
     const [open, setOpen] = useState(false);
     const [selectedMeeting, setSelectedMeeting] = useState(null);
-   
+    const [scroll, setScroll] = useState(0);
+  
     return (
       <BrowserRouter>
         <div className="App">
-          <div className="navbar">
-            <div className="links">
-              <Burger open={open} setOpen={setOpen}/>
-            </div>  
-            <div className="headline">
-              <h1>Our Book Club</h1>
-            </div>
-            <div className="login">
-              <a href="/login">Login</a>
-            </div>
-            <Menu open={open} setOpen={setOpen}/>
-          </div>
-         
-          <div className="content">
-            <Route exact path="/" render={props => 
-              (<Home {...props} setSelectedMeeting={setSelectedMeeting}/>)}/>
+          <NavBar scroll={scroll} open={open} setOpen={setOpen} setScroll={setScroll}/>
+          <Menu open={open} setOpen={setOpen} />
+          <div className="content">
+            <Route exact path="/" render={props => 
+              (<Home {...props} setSelectedMeeting={setSelectedMeeting} open={open}/>)}/>
             <Route path="/books" component={Books}/>
             <Route exact path="/book/:isbn" component={Book}/>
             <Route path="/contact" component={Contact}/>

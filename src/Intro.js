@@ -1,19 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Intro.css";
  
-class Intro extends Component {
-  render() {
-    return (
-      <div className="Intro">
-        <h2>Welcome to Our Book Club</h2>
-        <p>We love to get together and share thoughts about good books, and we welcome diverse
-          views and perspectives. Even the back and forth banter is fun! If you're an
-          inquisitive adult of any age who's looking for great fellowship, discussion, and belonging, 
-          feel free to contact us about joining the group.
-        </p>
-      </div>
-    );
-  }
+const Intro = () => {
+  return (
+    <div className="Intro">
+      <div className="Intro-img"></div>
+      <p className="Intro-text">
+        You then roused his anger by calling him names 
+        at a moment when he felt that he had deserved 
+        your warmest thanks.<br/><br/> 
+        
+        He could not explain the true state of affairs 
+        without betraying one who certainly deserved 
+        little enough consideration at his hands. He took 
+        the more chivalrous view, however, and 
+        preserved her secret.
+      </p>
+    </div>
+  );
+
 }
  
 export default Intro;

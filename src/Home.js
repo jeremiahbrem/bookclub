@@ -4,11 +4,11 @@ import Hero from "./display/Hero";
 import BookSlider from "./BookSlider";
 import UpcomingMeetings from "./UpcomingMeetings";
  
-const Home = ({setSelectedMeeting}) => {
+const Home = ({setSelectedMeeting, open}) => {
   
     return (
       <div>
-        <Hero/>       
+        <Hero open={open}/>   
         <Intro/>
         <BookSlider />
         <UpcomingMeetings setSelectedMeeting={setSelectedMeeting} />

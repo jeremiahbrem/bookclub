@@ -1,19 +1,126 @@
-.Hero-container {
-    margin-top: 64px;
-    height: calc(100vh - 100px);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: -1;
-    position: relative;
+.Hero {
+  background-image: url("../assets/images/bookclub-hero.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% -75px;
+  width: 850px;
+  height: 100%;
+  float: right;
 }
 
-.Hero-container > h3 {
-    font-family: 'Great Vibes', cursive;
-    color: white;
-    font-size: 70px;
-    text-align: center;
-    width: 100%;
+.Hero-container {
+    background-color: white;
+    height: 100vh;
+    visibility: visible;
+    transition: visibility .4s, opacity .4s;
+}
+
+.Hero-text {
+    z-index: 2;
+}
+
+.Hero-text {
+    color: #2BBD66;
+    font-family: 'Montserrat';
+    font-weight: 800;
+    font-size: 35px;
+    line-height: 42px;
+    text-align: left;
     position: absolute;
-    top: 100px;
+    right: 410px;
+    top: 400px;
+    width: 750px;
+    padding: 0px;
+}
+
+.Hero-text-mobile {
+    display: none;
+    color: #2BBD66;
+    font-family: 'Montserrat';
+    font-weight: 800;
+    text-align: left;
+    position: absolute;
+    top: 400px;
+    padding: 0px;
+    font-size: 25px;
+    line-height: 30px;
+    width: 560px;
+    left: 0;
+}
+
+.Hero-text-line {
+    background-color: white;
+    padding: 5px 20px 5px 20px;
+    display: inline-block;
+}
+
+.Hero-austen {
+    color: #1C0063;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 21px;
+    text-align: left;
+    position: absolute;
+    right: 870px;
+    bottom: 20px;
+    z-index: 2;
+}
+ 
+ .App-show {
+     visibility: visible;
+     opacity: 1;
+ }
+
+ .App-hidden {
+     visibility: hidden;
+     opacity: 0;
+ }
+
+@media (max-width: 850px) {
+    .Hero {
+        background-position: center;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .Hero-text {
+        left: 0;
+    }
+
+    .Hero-austen {
+        left: 20px;
+        right: 0;
+    }
+}
+
+@media (max-width: 770px) {
+    .Hero-text {
+        font-size: 25px;
+        line-height: 30px;
+        width: 560px;
+    }
+}
+
+@media (max-width: 590px) {
+    .Hero-text {
+        display: none;
+    }
+
+    .Hero-text-mobile {
+        display: inline-block;
+        top: 375px;
+    }
+}
+
+@media (max-width: 420px) {
+    .Hero-text-mobile {
+        font-size: 17px;
+        line-height: 21px;
+        width: 385px;
+        top: 400px;
+    }
 }

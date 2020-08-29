@@ -1,26 +1,80 @@
 .Intro {
     text-align: center;
-    padding: 30px;
-    height: calc(100vh - 100px);
+    padding: 80px;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
 }
 
-.Intro > h2 {
-    font-family: 'Dancing script', cursive;
-    font-size: 40px;
-    margin-top: 90px;
+.Intro-text {
+    color: #1C0063;
+    font-family: 'Montserrat';
+    font-size: 24px;
+    line-height: 40px;
+    width: 50%;
+    text-align: left;
+    margin-top: 30px;
+    margin-left: 30px;
 }
 
-.Intro p {
-    font-family: Arial;
-    font-size: 20px;
-    line-height: 3rem;
+.Intro-img {
+    background: url("./assets/images/bookclub-home.jpg");
+    height: 484px;;
+    width: 510px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+}
+
+@media (max-width: 1250px) {
+    .Intro-img {
+        width: 433px;
+        height: 411px;
+    }
+
+    .Intro-text {
+        font-size: 20px;
+    }
+
+    .Intro {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 1090px) {
+    .Intro-img {
+        width: 369px;
+        height: 350px;
+    }
+
+    .Intro-text {
+        font-size: 17px;
+    }
+
+    .Intro {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 874px) {
+    .Intro-text {
+        width: 75%;
+    }
+
+    .Intro {
+        height: 100%;
+    }
 }
 
 @media (max-width: 600px) {
-    .Intro p {
-        line-height: 2rem;
+    .Intro {
+        padding: 10px;
     }
-    .Intro h2 {
-        margin-top: 60px;
+
+    .Intro-text {
+        width: 100%;
     }
 }

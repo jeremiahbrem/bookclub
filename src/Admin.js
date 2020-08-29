@@ -12,6 +12,8 @@ import EditBook from "./EditBook";
 const { validateIsbn } = require("./utilities/validateIsbn.js");
  
 const Admin = () => {
+
+  // set states for showing/hiding elements
   const [isbn, setIsbn] = useState("");
   const [showBookAdded, setShowBookAdded] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
