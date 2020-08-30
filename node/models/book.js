@@ -7,7 +7,7 @@ const sqlForPartialUpdate = require("../helpers/partialUpdate.js")
 class Book {
 
   /* constructor for new Book object with properties */
-  constructor(id, isbn, title, synopsis, genre, publish_date, info_url, read_date, author) {
+  constructor(id, isbn, title, synopsis, genre, publish_date, info_url, read_date, author, price) {
     this.id = id;
     this.isbn = isbn;
     this.title = title;
@@ -17,6 +17,7 @@ class Book {
     this.info_url = info_url;
     this.read_date = read_date;
     this.author = author;
+    this.price = price;
   }
 
   /* retreives all books from database or a filtered list with given properties
@@ -46,7 +47,7 @@ class Book {
       `SELECT id, isbn, title, synopsis, genre, publish_date, info_url,
        TO_CHAR(
         read_date,
-        'MON YYYY'
+        'MM YYYY'
        ) month_year, 
        author FROM books ${searchQuery}
        ORDER BY ${sort} ${order}`
@@ -75,7 +76,7 @@ class Book {
 
 
   // adds new book to db and returns Book object
-  static async add({isbn, title, synopsis, genre, publish_date, info_url, read_date, author}) {
+  static async add({isbn, title, synopsis, genre, publish_date, info_url, read_date, author, price}) {
     // check for duplicate isbn
     const isbnCheck = await db.query(
       `SELECT isbn FROM books WHERE isbn='${isbn}'`
@@ -85,10 +86,10 @@ class Book {
     }
   
     let query = `INSERT INTO books 
-      (isbn, title, synopsis, genre, publish_date, info_url, read_date, author)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`;
+      (isbn, title, synopsis, genre, publish_date, info_url, read_date, author, price)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`;
 
-    let values = [isbn, title, synopsis, genre, publish_date, info_url, read_date, author];
+    let values = [isbn, title, synopsis, genre, publish_date, info_url, read_date, author, price];
 
     const result = await db.query(query, values);
     return new Book(result.rows[0]);

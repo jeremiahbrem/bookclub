@@ -27,27 +27,27 @@ const Contact = () => {
   }
  
   return (
-    <div className="Contact">   
-      <form className="Contact-form" onSubmit={handleSubmit}>
-        <label className="Contact-label">Name</label>
-        <input className="Contact-input" type="text" value={name} name="name" onChange={handleChange} required/>
-        <label className="Contact-label">Email</label>
-        <input className="Contact-input" type="text" value={email} name="email" onChange={handleChange} required/>
-        <label className="Contact-slider-label">Join Email List</label>
-        <label className="Contact-switch">
-          <input name="slider" checked={toggle} onChange={handleChange}
-            type="checkbox"/><span className="Contact-slider round"></span>
-        </label>
-        <select value={select} name="select" className="Contact-select" onChange={handleChange}>
-            <option value="default" disabled>Reason for Contact</option>
-            <option value="member">Become a member</option>
-            <option value="refer">Refer a book</option>
-            <option value="tech">Technical problems</option>
-            <option value="other">Other</option>
-        </select>
-
-        <button className="Contact-button" type="submit" value="Submit">Submit</button>
-      </form>
+    <div className="Contact">  
+      <div className="Contact-img"></div> 
+      <div className="Contact-form-cont">
+        <h3>Interested in book club?, <br/><b>we’d love to here from you</b></h3>
+        <form className="Contact-form" onSubmit={handleSubmit}>
+          <label className="Contact-label">Name:</label>
+          <input className="Contact-input" type="text" value={name} name="name" onChange={handleChange} required/>
+          <label className="Contact-label">Email:</label>
+          <input className="Contact-input" type="text" value={email} name="email" onChange={handleChange} required/>
+          <label className="Contact-label">Favorite read:</label>
+          <input className="Contact-input" type="text" value={email} name="email" onChange={handleChange} required/>
+          <div className="Contact-recaptcha">
+            <div className="Contact-recaptcha-bg"></div>
+            <div className="Contact-icon"></div>
+            <div className="Contact-check"></div>
+          </div>
+      
+          <button className="Contact-button"><p>Send</p></button>
+        
+        </form>
+      </div>
     </div> 
   );
   

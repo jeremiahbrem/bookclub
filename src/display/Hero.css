@@ -13,6 +13,10 @@
     height: 100vh;
 }
 
+.Hero-container-night {
+    background-color: #1C0063;
+}
+
 .Hero-text {
     z-index: 2;
 }
@@ -42,7 +46,7 @@
     padding: 0px;
     font-size: 25px;
     line-height: 30px;
-    width: 560px;
+    width: 100%;;
     left: 0;
 }
 
@@ -50,6 +54,10 @@
     background-color: white;
     padding: 5px 20px 5px 20px;
     display: inline-block;
+}
+
+.Hero-text-line-night {
+    background-color: #1C0063;
 }
 
 .Hero-austen {
@@ -63,6 +71,10 @@
     right: 870px;
     bottom: 20px;
     z-index: 2;
+}
+
+.Hero-austen-night {
+    color: white;
 }
 
 @media (max-width: 850px) {
@@ -108,7 +120,6 @@
     .Hero-text-mobile {
         font-size: 17px;
         line-height: 21px;
-        width: 385px;
         top: 400px;
     }
 }

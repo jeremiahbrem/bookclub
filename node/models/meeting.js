@@ -7,10 +7,9 @@ const sqlForPartialUpdate = require("../helpers/partialUpdate.js")
 class Meeting {
 
   /* constructor for new meeting object with properties */
-  constructor(id, date, book_id, description, link) {
+  constructor(id, date, description, link) {
     this.id = id;
     this.date = date;
-    this.book_id = book_id;
     this.description = description;
     this.link = link;
   }
@@ -19,13 +18,12 @@ class Meeting {
    */
   static async getMeetings() {
     const result = await db.query(
-      `SELECT m.id, m.book_id, m.description, m.link, b.isbn,
+      `SELECT id, description, link,
       TO_CHAR(
         date,
-        'HH:MI AM MON DD, YYYY'
+        'HH:MI AM MM/DD YYYY'
        ) meet_date
-       FROM meetings AS m JOIN books AS b
-       ON m.book_id = b.id
+       FROM meetings
        ORDER BY meet_date`
     );
     return result.rows;
@@ -35,7 +33,7 @@ class Meeting {
   /* gets meeting by id and returns Meeting object */ 
   static async getMeeting(meetingId) {
     const result = await db.query(
-      `SELECT id, book_id, description, link,
+      `SELECT id, description, link,
       TO_CHAR(
         date,
         'HH24:MI YYYY-MM-DD'
@@ -46,18 +44,18 @@ class Meeting {
     if (!result.rows[0]) {
       throw new ExpressError(`Meeting with id ${meetingId} not found`, 404);
     }
-    const { id, meet_date, book_id, description, link } = result.rows[0];
-    return new Meeting(id, meet_date, book_id, description, link);
+    const { id, meet_date, description, link } = result.rows[0];
+    return new Meeting(id, meet_date, description, link);
   }
 
 
   // adds new meeting to db and returns Meeting object
-  static async add({date, book_id, description, link}) {  
+  static async add({date, description, link}) {  
     let query = `INSERT INTO meetings 
-      (date, book_id, description, link)
-      VALUES ($1, $2, $3, $4) RETURNING *`;
+      (date, description, link)
+      VALUES ($1, $2, $3) RETURNING *`;
 
-    let values = [date, book_id, description, link];
+    let values = [date, description, link];
 
     const result = await db.query(query, values);
     return new Meeting(result.rows[0]);

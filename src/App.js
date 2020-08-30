@@ -16,15 +16,29 @@ function App () {
     const [selectedMeeting, setSelectedMeeting] = useState(null);
     // sets state for user scroll position, to change navbar background color
     const [scroll, setScroll] = useState(0);
+    const [night, setNight] = useState(false);
   
     return (
       <BrowserRouter>
         <div className="App">
-          <NavBar scroll={scroll} open={open} setOpen={setOpen} setScroll={setScroll}/>
-          <Menu open={open} setOpen={setOpen} />
+          <NavBar 
+            scroll={scroll} 
+            open={open} 
+            setOpen={setOpen} 
+            setScroll={setScroll}
+            night={night}
+            setNight={setNight}
+          />
+          <Menu open={open} setOpen={setOpen} night={night}/>
           <div className="content">
             <Route exact path="/" render={props => 
-              (<Home {...props} setSelectedMeeting={setSelectedMeeting} open={open}/>)}/>
+              (<Home {...props} 
+                setSelectedMeeting={setSelectedMeeting} 
+                open={open}
+                night={night}
+                setNight={setNight}
+              />)}
+            />
             <Route path="/books" component={Books}/>
             <Route exact path="/book/:isbn" component={Book}/>
             <Route path="/contact" component={Contact}/>

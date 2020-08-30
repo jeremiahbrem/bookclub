@@ -1,68 +1,169 @@
+.UpcomingMeetings-img {
+    background: url("./assets/images/bookclub-upcoming.png");
+    height: 532px;
+    width: 561px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+}
+
 .UpcomingMeetings {
-    text-align: center;
-    padding: 30px;
-}
-
-.UpcomingMeetings > h2 {
-    font-family: 'Dancing script', cursive;
-    font-size: 40px;
-    margin-top: 90px;
-}
-
-.UpcomingMeetings-details {
+    padding: 80px;
+    height: 100vh;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    margin: 20px;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0, .6);
-    padding: 20px;
-    border-radius: 10px;
-    margin: 10px;
+    justify-content: space-around;
     align-items: center;
-    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
-.UpcomingMeetings-cont {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+.UpcomingMeetings-text {
+    font-size: 24px;
+    line-height: 40px;
+    font-weight: 600;
+    width: 50%;
+    text-align: left;
+    margin: 30px 0px 50px 30px;
 }
 
-.UpcomingMeetings-details li{
-    list-style: none;
+.UpcomingMeetings-next {
+    color: #2BBD66;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: left;
+    margin-bottom: 20px;
 }
 
 .UpcomingMeetings-date {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    color: white;
+    color: #1C0063;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 57px;
+    text-align: left;
+    margin-bottom: 20px;
 }
 
-.UpcomingMeetings-link {
-    font-family: Arial, Helvetica, sans-serif;
+.UpcomingMeetings-date small {
     font-size: 20px;
-    color: white;
-}
-
-.UpcomingMeetings a {
-    color: lightseagreen;
 }
 
 .UpcomingMeetings-description {
-    max-width: 350px;
-    background-color: lightsteelblue;
-    border-radius: 10px;
-    padding: 5px;
+    color: #1C0063;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 40px;
+    width: 200px;
+    text-align: left;
+    margin-bottom: 35px;
 }
 
-.UpcomingMeetings-img {
+.UpcomingMeetings-button {
+    background-color: #2BBD66;
+    width: 206px;
+    height: 56px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
 
-@media (max-width: 500px) {
-    .UpcomingMeetings-date {
+.UpcomingMeetings-button p {
+    color: white;
+    font-family: 'Montserrat';
+    font-weight: 600;
+}
+
+.UpcomingMeetings-editor {
+    width: 475px;
+}
+
+@media (max-width: 1250px) {
+    .UpcomingMeetings-img {
+        width: 453px;
+        height: 429px;
+    }
+
+    .UpcomingMeetings-text {
         font-size: 20px;
+        line-height: 33px;
+    }
+
+    .UpcomingMeetings {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 1090px) {
+    .UpcomingMeetings-img {
+        width: 405px;
+        height: 385px;
+    }
+
+    .UpcomingMeetings-text {
+        font-size: 17px;
+        line-height: 28px;
+    }
+
+    .UpcomingMeetings {
+        padding: 30px;
+    }
+
+    .UpcomingMeetings-editor {
+        width: 425px;
+    }
+
+    .toolbar {
+        width: 200px;
+    }
+}
+
+@media (max-width: 950px) {
+    .UpcomingMeetings-text {
+        width: 75%;
+    }
+
+    .UpcomingMeetings {
+        height: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .UpcomingMeetings {
+        padding: 10px;
+    }
+
+    .UpcomingMeetings-text {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .UpcomingMeetings-editor {
+        width: 350px;
+    }
+}
+
+@media (max-width: 406px) {
+    .UpcomingMeetings-editor {
+        width: 290px;
+    }
+}
+
+@media (max-width: 350px) {
+    .UpcomingMeetings-editor {
+        font-size: .8em;
+        width: 250px;
+    }
+
+    .UpcomingMeetings-date {
+        font-size: 40px;
+        line-height: 50px;
     }
 }

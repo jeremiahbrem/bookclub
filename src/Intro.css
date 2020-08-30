@@ -6,7 +6,11 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    margin-top: 20px;
+    padding-top: 80px;
+}
+
+.Intro-night {
+    background-color: #1C0063;
 }
 
 .Intro-text {
@@ -20,10 +24,14 @@
     margin: 30px 0px 50px 30px;
 }
 
+.Intro-text-night {
+    color: white;
+}
+
 .Intro-img {
     background: url("./assets/images/bookclub-home.jpg");
-    height: 484px;;
-    width: 510px;
+    height: 532px;;
+    width: 561px;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -31,8 +39,8 @@
 
 @media (max-width: 1250px) {
     .Intro-img {
-        width: 433px;
-        height: 411px;
+        width: 453px;
+        height: 429px;
     }
 
     .Intro-text {
@@ -47,8 +55,8 @@
 
 @media (max-width: 1090px) {
     .Intro-img {
-        width: 369px;
-        height: 350px;
+        width: 405px;
+        height: 385px;
     }
 
     .Intro-text {
@@ -78,5 +86,6 @@
 
     .Intro-text {
         width: 100%;
+        margin-bottom: 75px;
     }
 }

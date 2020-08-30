@@ -1,75 +1,109 @@
 .App-show {
      visibility: visible;
- }
+}
 
- .App-hidden {
-     visibility: hidden;
- }
- 
- .navbar {
-     position: fixed;
-     top: 0px;
-     height: 50px;
-     width: 100%;
-     z-index: 4;
-     padding: 10px;
-     background-color: transparent;
-     transition: background-color .3s;
- }
+.App-hidden {
+    visibility: hidden;
+}
 
- .navbar-bg {
-     background-color: white;
- }
+.navbar {
+    position: fixed;
+    top: 0px;
+    height: 50px;
+    width: 100%;
+    z-index: 4;
+    padding: 10px;
+    background-color: transparent;
+    transition: background-color .3s;
+}
 
- .navbar-logo {
-     position: absolute;
-     left: 200px;
-     top: 15px;
- }
+.navbar-bg {
+    background-color: rgb(253, 249, 249);
+    opacity: .9;
+}
 
- .navbar-right {
-     position: absolute;
-     right: 40px;
-     display: flex;
-     top: 10px;
- }
+.navbar-bg-night {
+    background-color: #1C0063;
+    opacity: .9;
+}
 
- .navbar-day, .navbar-login {
+.navbar-logo {
+    position: absolute;
+    left: 200px;
+    top: 15px;
+}
+
+.navbar-right {
+    position: absolute;
+    right: 40px;
+    display: flex;
+    top: 10px;
+}
+
+.navbar-day, .navbar-login {
     color: #1C0063;
     font-family: 'Montserrat';
     font-size: 20px;
     font-weight: 600;
-    line-height: 25px;
     text-align: center;
-    margin-left: 10px;
-    margin-top: 4px;
- }
+    margin-right: 40px;
+    margin-left: 5px;
+    display: inline-block;
+    width: 41px;
+    position: absolute;
+}
 
- .navbar-user-icon, .navbar-sunrise-icon {
-     margin-top: 5px;
-     margin-left: 20px;
- }
+.navbar-user-icon, .navbar-sunrise-icon, .navbar-moon {
+    width: 25px;
+    margin-left: 50px;
+}
 
- .navbar-day {
-     margin-right: 30px;
- }
+.navbar-sunrise {
+    cursor: pointer;
+    margin-right: 45px;
+    position: relative;
+}
 
- @media (max-width: 650px) {
-     .navbar-logo {
-         left: 75px;
-     }
- }
+.navbar-user {
+    cursor: pointer;
+    margin-right: 50px;
+}
 
- @media (max-width: 500px) {
-     .navbar-day, .navbar-login {
-         display: none;
-     }
+.navbar-moon {
+    margin-top: 3px;
+}
 
-     .navbar-user-icon {
-         margin-left: 20px;
-     }
+@media (max-width: 650px) {
+    .navbar-logo {
+        left: 75px;
+    }
+}
 
-     .navbar-right {
-         right: 5px;
-     }
- }
+@media (max-width: 520px) {
+    .navbar-day, .navbar-login {
+        display: none;
+    }
+
+    .navbar-sunrise {
+        margin-right: 15px;
+    }
+
+    .navbar-user-icon, .navbar-sunrise-icon, .navbar-moon {
+        width: 25px;
+        margin-left: 15px;
+    }
+
+    .navbar-user {
+        margin-right: 10px;
+    }
+
+    .navbar-right {
+        right: 5px;
+    }
+}
+
+@media (max-width: 340px) {
+    .navbar-logo {
+        width: 140px;
+    }
+}

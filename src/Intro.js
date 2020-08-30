@@ -2,11 +2,11 @@ import React from "react";
 import "./Intro.css";
  
 // component for intro section with image and text fields
-const Intro = () => {
+const Intro = ({night}) => {
   return (
-    <div className="Intro">
+    <div className={`Intro ${night && 'Intro-night'}`}>
       <div className="Intro-img"></div>
-      <p className="Intro-text">
+      <p className={`Intro-text ${night && 'Intro-text-night'}`}>
         You then roused his anger by calling him names 
         at a moment when he felt that he had deserved 
         your warmest thanks.<br/><br/> 

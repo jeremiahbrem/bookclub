@@ -1,7 +1,6 @@
 .BookSlider {
-    overflow-x: scroll;
+    overflow-x: hidden;
     height: 100vh;
-    margin-left: 50px;
     position: relative;
     display: flex;
     scroll-behavior: smooth;
@@ -142,5 +141,11 @@
     .BookSlider-arrow-left {
         top: 275px;
         left: 35px;
+    }
+}
+
+@media (max-width: 360px) {
+    .BookSlider {
+        margin-left: 20px;
     }
 }
