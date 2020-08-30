@@ -2,9 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
+    padding-bottom: 50px;
     height: 400px;
     padding: 10px;
+}
+
+.BookQuote-night {
+    background-color: #1C0063;
 }
 
 .BookQuote-text {
@@ -15,6 +19,10 @@
     line-height: 37px;
     width: 898px;
     text-align: center;
+}
+
+.BookQuote-text-night {
+    color: white;
 }
 
 .BookQuote span {

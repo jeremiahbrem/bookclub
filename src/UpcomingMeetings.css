@@ -15,8 +15,12 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    margin-top: 20px;
-    margin-bottom: 50px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.UpcomingMeetings-night {
+    background-color: #1C0063;
 }
 
 .UpcomingMeetings-text {
@@ -48,6 +52,10 @@
     margin-bottom: 20px;
 }
 
+.UpcomingMeetings-date-night {
+    color: white;
+}
+
 .UpcomingMeetings-date small {
     font-size: 20px;
 }
@@ -61,6 +69,10 @@
     width: 200px;
     text-align: left;
     margin-bottom: 35px;
+}
+
+.UpcomingMeetings-description-night {
+    color: white;
 }
 
 .UpcomingMeetings-button {

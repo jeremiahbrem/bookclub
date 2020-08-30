@@ -6,7 +6,7 @@ import "./UpcomingMeetings.css";
 
 const { parseDate } = require("./utilities/parseDate.js");
  
-const UpcomingMeetings = ({ setSelectedMeeting }) => {
+const UpcomingMeetings = ({ setSelectedMeeting, night }) => {
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState(null);
@@ -47,15 +47,15 @@ const UpcomingMeetings = ({ setSelectedMeeting }) => {
     return <div>Loading...</div>;
   } else {
     return (
-      <div className="UpcomingMeetings">
+      <div className={`UpcomingMeetings ${night && 'UpcomingMeetings-night'}`}>
         <div className="UpcomingMeetings-text">
           <div className="UpcomingMeetings-next">Next Meeting</div>
           {item &&
-          <div className="UpcomingMeetings-date">
+          <div className={`UpcomingMeetings-date ${night && 'UpcomingMeetings-date-night'}`}>
             <p>{parseDate(item.meet_date)[0]}<small>{parseDate(item.meet_date)[1]}</small></p>
           </div>}
           {item &&
-          <div className="UpcomingMeetings-description">
+          <div className={`UpcomingMeetings-description ${night && 'UpcomingMeetings-description-night'}`}>
             <Editor 
               wrapperClassName="UpcomingMeetings-editor"
               toolbarClassName="toolbar"

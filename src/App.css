@@ -27,7 +27,7 @@
     opacity: .9;
 }
 
-.navbar-logo {
+.navbar-logo, .navbar-logo-night {
     position: absolute;
     left: 200px;
     top: 15px;
@@ -40,7 +40,7 @@
     top: 10px;
 }
 
-.navbar-day, .navbar-login {
+.navbar-day, .navbar-login, .navbar-night {
     color: #1C0063;
     font-family: 'Montserrat';
     font-size: 20px;
@@ -53,6 +53,14 @@
     position: absolute;
 }
 
+.navbar-day, .navbar-login {
+    color: #1C0063;
+}
+
+.navbar-night {
+    color: white;
+}
+
 .navbar-user-icon, .navbar-sunrise-icon, .navbar-moon {
     width: 25px;
     margin-left: 50px;
@@ -62,11 +70,13 @@
     cursor: pointer;
     margin-right: 45px;
     position: relative;
+    margin-top: 5px;
 }
 
 .navbar-user {
     cursor: pointer;
     margin-right: 50px;
+    margin-top: 5px;
 }
 
 .navbar-moon {
@@ -74,36 +84,36 @@
 }
 
 @media (max-width: 650px) {
-    .navbar-logo {
+    .navbar-logo, .navbar-logo-night {
         left: 75px;
     }
 }
 
 @media (max-width: 520px) {
-    .navbar-day, .navbar-login {
+    .navbar-day, .navbar-login, .navbar-night {
         display: none;
+    }
+
+    .navbar-user-icon, .navbar-sunrise-icon, .navbar-moon {
+        width: 25px;
+        margin-left: 5px;
     }
 
     .navbar-sunrise {
         margin-right: 15px;
     }
 
-    .navbar-user-icon, .navbar-sunrise-icon, .navbar-moon {
-        width: 25px;
-        margin-left: 15px;
-    }
-
     .navbar-user {
-        margin-right: 10px;
+        margin-right: 5px;
     }
 
     .navbar-right {
-        right: 5px;
+        right: 0px;
     }
 }
 
-@media (max-width: 340px) {
-    .navbar-logo {
+@media (max-width: 353px) {
+    .navbar-logo, .navbar-logo-night {
         width: 140px;
     }
 }

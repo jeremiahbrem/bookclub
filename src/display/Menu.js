@@ -11,7 +11,7 @@ const Menu = ({open, setOpen, night}) => {
     return (
       <div className={open ? "Menu Menu-in" : "Menu Menu-out"}>
         <X className="Menu-x" onClick={() => setOpen(!open)}/>
-        <MenuLogo className={`Menu-logo ${night && 'Menu-logo-night'}`}/>
+        <MenuLogo className="Menu-logo"/>
         <ul className="Menu-ul">
           <li className="Menu-li" onClick={() => setOpen(!open)}>HOME</li>
           <li className="Menu-li" onClick={() => setOpen(!open)}>BOOKS</li>

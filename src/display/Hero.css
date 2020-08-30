@@ -70,11 +70,14 @@
     position: absolute;
     right: 870px;
     bottom: 20px;
+    width: 175px;
+    padding: 5px;
     z-index: 2;
 }
 
 .Hero-austen-night {
     color: white;
+    background-color: #1C0063;
 }
 
 @media (max-width: 850px) {

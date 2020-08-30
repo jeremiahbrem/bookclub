@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import MenuIcon from "./MenuIcon";
 import {ReactComponent as UserIcon} from '../assets/images/user.svg';
+import {ReactComponent as UserNight} from '../assets/images/user-night.svg';
 import {ReactComponent as SunriseIcon} from '../assets/images/sunrise.svg';
 import {ReactComponent as MoonIcon} from '../assets/images/night-icon.svg';
 import {ReactComponent as Logo} from '../assets/images/logo.svg';
@@ -22,7 +23,7 @@ const Navbar = ({open, setOpen, scroll, setScroll, night, setNight}) => {
   }, [scroll, setScroll]);
 
     /* returns navbar with menu icon, logo, day/night icon, and login user icon
-       if user scrolls from top of page, the navbar background turns white */
+       if user scrolls from top of page, the navbar background turns white, or blue in night mode */
     return (
       <div className={scroll > 75 ? `navbar navbar-bg${nightClass}` : "navbar"}>
         <div className="navbar-left">
@@ -30,7 +31,7 @@ const Navbar = ({open, setOpen, scroll, setScroll, night, setNight}) => {
           {!night &&
           <Logo className="navbar-logo"/>}
           {night &&
-          <MenuLogo className="Menu-logo"/>}
+          <MenuLogo className="navbar-logo-night"/>}
         </div>
         <div className="navbar-right">
           <div className="navbar-sunrise" onClick={() => setNight(!night)}>
@@ -38,11 +39,20 @@ const Navbar = ({open, setOpen, scroll, setScroll, night, setNight}) => {
             <SunriseIcon className="navbar-sunrise-icon"/>}
             {night &&
             <MoonIcon className="navbar-moon"/>}
-            <div className="navbar-day">Day</div>
+            {!night &&
+            <div className="navbar-day">Day</div>}
+            {night &&
+            <div className="navbar-night">Night</div>}
           </div>
           <div className="navbar-user">
-            <UserIcon className="navbar-user-icon"/>
-            <div className="navbar-login">Login</div>
+            {!night &&
+            <UserIcon className="navbar-user-icon"/>}
+            {night &&
+            <UserNight className="navbar-user-icon"/>}
+            {!night &&
+            <div className="navbar-login">Login</div>}
+            {night &&
+            <div className="navbar-night">Night</div>}
           </div>
         </div>
     </div>   

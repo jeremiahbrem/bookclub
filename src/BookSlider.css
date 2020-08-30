@@ -6,6 +6,10 @@
     scroll-behavior: smooth;
 }  
 
+.BookSlider-cont-night {
+    background-color: #1C0063;
+}
+
 .BookSlider-book {
     margin-top: 70px;
     height: 400px;
@@ -20,18 +24,6 @@
     margin: 15px;
 }
 
-
-.book-read ul{
-   background-color: transparent;
-}
-
-.book-read li {
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 30px;
-    list-style: none;
-}
-
 .BookSlider-genre {
     color: #1C0063;
     font-family: 'Montserrat';
@@ -39,6 +31,10 @@
     line-height: 17px;
     width: 275px;
     text-align: center;
+}
+
+.BookSlider-genre-night {
+    color: white;
 }
 
 .BookSlider-title-author {
@@ -57,6 +53,10 @@
     line-height: 17px;
     margin-bottom: 15px;
     text-align: center;
+}
+
+.BookSlider-title-night {
+    color: white;
 }
 
 .BookSlider-author {

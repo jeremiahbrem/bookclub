@@ -2,9 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from 'react-router-dom';
 import { ReactComponent as Arrow} from "./assets/images/arrow-right.svg";
 import "./BookSlider.css";
-import { set } from "draft-js/lib/DefaultDraftBlockRenderMap";
  
-const BookSlider = () => {
+const BookSlider = ({night}) => {
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
@@ -68,12 +67,12 @@ const BookSlider = () => {
     );
   } else {
     return (
-      <div className="BookSlider-cont">
+      <div className={`BookSlider-cont ${night && 'BookSlider-cont-night'}`}>
         <div className="BookSlider" onScroll={handleScroll} ref={ref}>
           {items.map(book => {
             return (  
               <div className="BookSlider-book" key={book.isbn}>
-                <div className="BookSlider-genre">
+                <div className={`BookSlider-genre ${night && 'BookSlider-genre-night'}`}>
                   {book.genre}
                 </div>
                 <div className="BookSlider-img">
@@ -83,7 +82,7 @@ const BookSlider = () => {
                 </div>
                 <div>
                   <div className="BookSlider-title-author">
-                    <p className="BookSlider-title">{book.title}</p>
+                    <p className={`BookSlider-title ${night && 'BookSlider-title-night'}`}>{book.title}</p>
                     <p className="BookSlider-author">{book.author}</p>
                   </div>
                 </div>
