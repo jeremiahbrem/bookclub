@@ -1,12 +1,10 @@
 .Intro {
-    padding: 80px;
-    height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
-    padding-top: 80px;
+    padding: 80px;
+    margin: 0px;
 }
 
 .Intro-night {
@@ -19,9 +17,9 @@
     font-size: 24px;
     line-height: 40px;
     font-weight: 600;
-    width: 50%;
+    width: 40%;
     text-align: left;
-    margin: 30px 0px 50px 30px;
+    margin: 30px 0px 30px 30px;
 }
 
 .Intro-text-night {
@@ -47,10 +45,6 @@
         font-size: 20px;
         line-height: 33px;
     }
-
-    .Intro {
-        padding: 40px;
-    }
 }
 
 @media (max-width: 1090px) {
@@ -63,29 +57,20 @@
         font-size: 17px;
         line-height: 28px;
     }
-
-    .Intro {
-        padding: 30px;
-    }
 }
 
 @media (max-width: 874px) {
     .Intro-text {
         width: 75%;
     }
-
-    .Intro {
-        height: 100%;
-    }
 }
 
 @media (max-width: 600px) {
-    .Intro {
-        padding: 10px;
-    }
-
     .Intro-text {
         width: 100%;
-        margin-bottom: 75px;
+    }
+
+    .Intro {
+        padding: 40px 20px 40px 20px;
     }
 }

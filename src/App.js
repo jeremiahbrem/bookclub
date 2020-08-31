@@ -20,7 +20,7 @@ function App () {
   
     return (
       <BrowserRouter>
-        <div className="App">
+        <div className={`App`}>
           <NavBar 
             scroll={scroll} 
             open={open} 
@@ -39,8 +39,17 @@ function App () {
                 setNight={setNight}
               />)}
             />
-            <Route path="/books" component={Books}/>
-            <Route exact path="/book/:isbn" component={Book}/>
+            <Route path="/books" render={props => 
+              (<Books {...props} 
+                night={night}
+              />)}
+            />  
+            <Route exact path="/book/:isbn" render={props => 
+              (<Book {...props} 
+                selectedMeeting={selectedMeeting}
+                setSelectedMeeting={setSelectedMeeting}
+                night={night}
+              />)}/>
             <Route path="/contact" component={Contact}/>
             <Route path="/schedule" render={props => 
               (<Schedule {...props} 

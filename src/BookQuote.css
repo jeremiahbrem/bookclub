@@ -2,9 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 50px;
-    height: 400px;
-    padding: 10px;
+    padding: 0px 10px 50px 10px;
+    margin: 0px;
+    padding-bottom: 150px;
 }
 
 .BookQuote-night {
@@ -14,7 +14,7 @@
 .BookQuote-text {
     color: #1C0063;
     font-family: 'Montserrat';
-    font-weight: 700;
+    font-weight: 600;
     font-size: 28px;
     line-height: 37px;
     width: 898px;

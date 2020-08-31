@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Arrow} from "./assets/images/arrow-right.svg";
 import "./BookSlider.css";
  
-const BookSlider = ({night}) => {
+const BookSlider = ({night, bookScrollCheck}) => {
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
@@ -35,7 +35,7 @@ const BookSlider = ({night}) => {
 
 
   function handleScroll(event) {
-    if (width - event.target.scrollLeft <= window.innerWidth)
+    if (width - event.target.scrollLeft <= bookScrollCheck)
       setRight(false);
     else
       setRight(true);

@@ -1,45 +1,85 @@
 .Books {
-    height: calc(100vh - 100px);
-    margin-top: 45px;
-}
-.Books-bg-image {
-    background-size:cover;
-    -webkit-filter: blur(3px);
-    -moz-filter: blur(3px);
-    -o-filter: blur(3px);
-    -ms-filter: blur(3px);
-    filter: blur(3px);
-    position:absolute;
-    width:100%;
-    height:100%;
-    background-image: url("./assets/images/book-page.jpg");
+    padding-top: 85px;
 }
 
-.Books-cont {
-    height: 100%;
-    overflow-y: scroll;
+.Books-my {
+    color: #1C0063;
+    font-family: 'Montserrat';
+    font-size: 27px;
+    font-weight: 800;
+    line-height: 38px;
+    margin-left: 85px;
+    margin-bottom: 20px;
 }
 
-.Books-details {
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0, .6);
-    margin: 40px;
-    padding: 5px;
-    width: 300px;
-}
-
-.Books-details li {
-    list-style-type: none;
-    margin: 20px;
-}
-
-.Books-book {
+.Books-inputs {
+    margin-left: 85px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 20px;
 }
 
+.Books-input {
+    background-color: rgb(236, 228, 228);
+    width: 345px;
+    height: 34px;
+    margin: 10px 20px 0 0;
+    font-family: 'Montserrat';
+    color: #1C0063;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.Books-input-small {
+    width: 70px;
+    background-color: rgb(236, 228, 228);
+    height: 34px;
+    margin: 10px 12px 0 0;
+    padding: 5px;
+    text-align: center;
+}
+
+.Books-label {
+    color: #1C0063;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Montserrat';
+    display: block;
+}
+
+.Books-slider-cont {
+    position: relative;
+    padding-top: 90px;
+    width: 55%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    border-left: 2px solid rgb(236, 228, 228);
+}
+
+.Books-current-next {
+    width: 48%;
+    padding-left: 50px;
+    float: right;
+}
+
+.Books-container {
+    display: flex;
+    margin-top: 30px;
+}
+
+.Books-previous {
+    color: #1C0063;
+    font-family: 'Montserrat';
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    position: absolute;
+    top: 35px;
+    left: 50px;
+}
+
+.Books-night {
+    background-color: #1C0063;
+}
+
+.Books-text-night {
+    color: white;
+}

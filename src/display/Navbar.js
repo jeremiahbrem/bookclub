@@ -25,7 +25,7 @@ const Navbar = ({open, setOpen, scroll, setScroll, night, setNight}) => {
     /* returns navbar with menu icon, logo, day/night icon, and login user icon
        if user scrolls from top of page, the navbar background turns white, or blue in night mode */
     return (
-      <div className={scroll > 75 ? `navbar navbar-bg${nightClass}` : "navbar"}>
+      <div className={scroll > 50 ? `navbar navbar-bg${nightClass}` : "navbar"}>
         <div className="navbar-left">
           <MenuIcon open={open} setOpen={setOpen} night={night} className="navbar-menu-icon"/>
           {!night &&
@@ -49,10 +49,7 @@ const Navbar = ({open, setOpen, scroll, setScroll, night, setNight}) => {
             <UserIcon className="navbar-user-icon"/>}
             {night &&
             <UserNight className="navbar-user-icon"/>}
-            {!night &&
-            <div className="navbar-login">Login</div>}
-            {night &&
-            <div className="navbar-night">Night</div>}
+            <div className={`navbar-login ${night && 'navbar-night'}`}>Login</div>
           </div>
         </div>
     </div>   

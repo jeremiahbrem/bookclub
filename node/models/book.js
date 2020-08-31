@@ -45,11 +45,7 @@ class Book {
     
     const result = await db.query(
       `SELECT id, isbn, title, synopsis, genre, publish_date, info_url,
-       TO_CHAR(
-        read_date,
-        'MM YYYY'
-       ) month_year, 
-       author FROM books ${searchQuery}
+       read_date, price, author FROM books ${searchQuery}
        ORDER BY ${sort} ${order}`
     );
     return result.rows;
@@ -60,18 +56,15 @@ class Book {
   static async getBook(isbnVal) {
     const result = await db.query(
       `SELECT id, isbn, title, synopsis, genre, publish_date, info_url, 
-        TO_CHAR(
-          read_date,
-          'MON YYYY'
-        ) month_year, author
+       read_date, author, price
         FROM books WHERE isbn='${isbnVal}'`
     );
   
     if (!result.rows[0]) {
       throw new ExpressError(`Book with isbn ${isbnVal} not found`, 404);
     }
-    const { id, isbn, title, synopsis, genre, publish_date, info_url, month_year, author } = result.rows[0];
-    return new Book(id, isbn, title, synopsis, genre, publish_date, info_url, month_year, author);
+    const { id, isbn, title, synopsis, genre, publish_date, info_url, read_date, author, price } = result.rows[0];
+    return new Book(id, isbn, title, synopsis, genre, publish_date, info_url, read_date, author, price);
   }
 
 

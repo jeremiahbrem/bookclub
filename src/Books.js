@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import BookSort from "./BookSort";
+import BookSlider from "./BookSlider";
+import CurrentNextBook from "./CurrentNextBook";
 import "./Books.css";
  
-const Books = () => {
+const Books = ({night}) => {
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);
-  const [sort, setSort] = useState("");
 
   useEffect(() => {
 
     let mounted = true;
-    fetch(`/db/api/books?sort=${sort}`)
+    fetch(`/db/api/books?`)
     .then(res => res.json())
     .then(
       (result) => {
@@ -27,7 +27,7 @@ const Books = () => {
       }
     )
     return () => mounted = false;
-  },[sort])
+  },[])
   
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -39,29 +39,31 @@ const Books = () => {
     );
   } else {
     return (
-      <div className="Books">
-        <BookSort sort={sort} setSort={setSort}/>
-        <div className="Books-bg-image"></div> 
-        <div className="Books-cont">
-          {items.map(book => {
-            return (  
-              <div className="Books-book" key={book.isbn}>   
-                <div className="Books-img">
-                  <Link to={`/book/${book.isbn}`}>
-                    <img className="Books-img" src={`/b/isbn/${book.isbn}-M.jpg`} alt=""/>
-                  </Link>  
-                </div>
-                <div className="Books-details">
-                  <ul>
-                    <li>Title: {book.title}</li>
-                    <li>Author: {book.author}</li>
-                    <li>Genre: {book.genre}</li>
-                    <li>Schedule: {book.month_year}</li>
-                  </ul>
-                </div>
-              </div> 
-            )
-          })}
+      <div className={`Books ${night && 'Books-night'}`}>
+        <h3 className={`Books-my ${night && 'Books-text-night'}`}>My books</h3>
+        <div className="Books-inputs">
+          <div className="Books-input-cont">
+            <label className={`Books-label ${night && 'Books-text-night'}`}>Title:</label>
+            <input className="Books-input" name="title"></input>
+          </div>
+          <div className="Books-input-cont">
+            <label className="Books-label">Author:</label>
+            <input className="Books-input" name="author"></input>
+          </div>
+          <div className="Books-input-cont">
+            <label className="Books-label">Date of read:</label>
+            <input className="Books-input-small" placeholder="MM" name="month"></input>
+            <input className="Books-input-small" placeholder="YY" name="year"></input>
+          </div>
+        </div>
+        <div className="Books-container">
+          <div className="Books-current-next">
+            <CurrentNextBook night={night}/>
+          </div>
+          <div className="Books-slider-cont">
+            <h4 className={`Books-previous ${night && 'Books-text-night'}`}>PREVIOUSLY READ</h4>
+            <BookSlider bookScrollCheck={window.innerWidth / 1.8} night={night} className="Books-slider"/>
+          </div>
         </div>
       </div>
     );

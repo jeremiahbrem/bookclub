@@ -2,7 +2,7 @@
   background-image: url("../assets/images/bookclub-hero.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 50% -75px;
+  background-position: center;
   width: 850px;
   height: 100%;
   float: right;
@@ -30,7 +30,7 @@
     text-align: left;
     position: absolute;
     right: 410px;
-    top: 400px;
+    bottom: 100px;
     width: 750px;
     padding: 0px;
 }
@@ -42,7 +42,7 @@
     font-weight: 800;
     text-align: left;
     position: absolute;
-    top: 400px;
+    bottom: 100px;
     padding: 0px;
     font-size: 25px;
     line-height: 30px;
@@ -115,7 +115,6 @@
 
     .Hero-text-mobile {
         display: inline-block;
-        top: 375px;
     }
 }
 
@@ -123,6 +122,5 @@
     .Hero-text-mobile {
         font-size: 17px;
         line-height: 21px;
-        top: 400px;
     }
 }

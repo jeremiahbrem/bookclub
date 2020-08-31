@@ -1,0 +1,94 @@
+.CurrentNextBook {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Current-book {
+    background-color: #2BBD66;
+}
+
+.Current-text {
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.Next-text {
+    color: #1C0063;
+    font-family: 'Montserrat';
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.CurrentNextBook-book {
+    padding: 35px 0px 50px 0px;
+    height: 560px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider-img {
+    cursor: pointer;
+    height: 390px;
+    margin: 15px;
+}
+
+.CurrentNextBook-genre {
+    color: #1C0063;
+    font-family: 'Montserrat';
+    font-size: 12;
+    line-height: 17px;
+    width: 275px;
+    text-align: center;
+}
+
+.CurrentNextBook-title-author {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 80px;
+}
+
+.CurrentNextBook-title {
+    color: #1C0063;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 17px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.CurrentNextBook-title-night {
+    color: white;
+}
+
+.CurrentNextBook-author {
+    color: #2BBD66; 
+    font-family: 'Montserrat';
+    font-weight: 500;
+    text-align: center;
+}
+
+.Current-author {
+    color: #1C0063;
+}
+
+.Current-title {
+    color: white;
+}
+
+.CurrentNext-text-night {
+    color: white;
+}
+
+@media (max-width: 360px) {
+    .BookSlider {
+        margin-left: 20px;
+    }
+}

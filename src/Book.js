@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { ReactComponent as Arrow} from "./assets/images/arrow-right.svg";
+import { ReactComponent as ArrowDark} from "./assets/images/arrow-right-dark.svg";
 import "./Book.css";
  
-const Book = ({ match }) => {
+const Book = ({ match, night }) => {
     const {
       params: { isbn }
     } = match;
@@ -27,7 +29,7 @@ const Book = ({ match }) => {
       }
     )
     return () => mounted = false;
-  })
+  }, [isbn]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -39,22 +41,23 @@ const Book = ({ match }) => {
     );
   } else {
     return (
-      <div className="Book">   
-        <div className="bg-image"></div> 
-        <div className="Book-img">
-          <img src={`/b/isbn/${item.isbn}-M.jpg`} alt=""/>
+      <div className={`Book ${night && 'Book-night'}`}>
+        <div className="Book-back">
+          {night &&
+          <Arrow className="Book-arrow-night"/>}
+          {!night && 
+          <ArrowDark className="Book-arrow"/>}
+          <div className={`Book-back-text ${night && 'Book-title-night'}`}>Back to results</div>
+        </div>
+        <div className="Book-img-cont">
+          <img className="Book-img" src={`/b/isbn/${item.isbn}-M.jpg`} alt=""/>
         </div>
         <div className="Book-details">
-          <ul>
-            <li>ISBN: {item.isbn}</li>
-            <li>Title: {item.title}</li>
-            <li>Author: {item.author}</li>
-            <li>Genre: {item.genre}</li>
-            <li>Synopsis: {item.synopsis}</li>
-            <li>Read Date: {item.read_date}</li>
-            <li>Buy Link: <a href={item.info_url}>Click here</a></li>
-            <li>Published: {item.publish_date}</li>
-          </ul>
+          <div className={`Book-title ${night && 'Book-title-night'}`}>{item.title}</div>
+          <div className={`Book-subtitle ${night && 'Book-title-night'}`}>This is subtitle text</div>
+          <div className={`Book-publish`}>Hardcover, 1007 pages<br/><i>{item.publish_date}</i></div>
+          <div className={`Book-synopsis ${night && 'Book-title-night'}`}>{item.synopsis}</div>
+          <button className="Book-button"><p>14.99 Buy</p></button>
         </div>
       </div> 
     );

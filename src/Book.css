@@ -1,52 +1,145 @@
-* {
-    box-sizing: border-box;
-}
-
 .Book {
-    min-height: calc(100vh - 100px);
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 658px;
     flex-wrap: wrap;
-    margin-top: 65px;
+    margin: 0;
+    padding: 0;
 }
 
-.bg-image {
-    background-size:cover;
-    -webkit-filter: blur(3px);
-    -moz-filter: blur(3px);
-    -o-filter: blur(3px);
-    -ms-filter: blur(3px);
-    filter: blur(3px);
-    position:absolute;
-    width:100%;
-    height:100%;
-    background-image: url("./assets/images/book-page.jpg");
+.Book-night {
+    background-color: #1C0063;
+}
+
+.Book-back {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    display: flex;
+    cursor: pointer;
+}
+
+.Book-back-text {
+    color: #1C0063;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    line-height: 22px;
+    text-align: left;
+    margin-top: 3px;
+    margin-left: 10px;
+}
+
+.Book-arrow, .Book-arrow-night {
+    transform: rotate(180deg);
+    width: 15px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.Book-img-cont {
+    width: 40%;
+    text-align: right;
+    height: 100%;
+    padding-right: 65px;
 }
 
 .Book-img {
-    margin-top: 50px;
+    height: 550px;
+    margin-top: 90px;
 }
-
-
 
 .Book-details {
-    font-family: Arial, Helvetica, sans-serif;
+    width: 50%;
+    text-align: left;
+    padding-top: 30px;
+}
+
+.Book-title {
+    color: #1C0063;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 29px;
+    line-height: 36px;
+    padding-right: 100px;
+}
+
+.Book-subtitle {
+    color: #1C0063;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    line-height: 19px;
+    margin-bottom: 30px;
+    padding-right: 100px;
+}
+
+.Book-publish {
+    color: #2BBD66;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    line-height: 19px;
+    margin-bottom: 30px;
+    padding-right: 100px;
+}
+
+.Book-synopsis {
+    color: #1C0063;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    line-height: 32px;
+    margin-bottom: 30px;
+    padding-right: 100px;
+}
+
+.Book-button {
+    background-color: #2BBD66;
+    width: 206px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+}
+
+.Book-button p {
     color: white;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0, .6);
-    margin: 40px;
+    font-family: 'Montserrat';
+    font-weight: 600;
 }
 
-.Book-details li {
-    list-style-type: none;
-    margin: 20px;
+.Book-title-night {
+    color: white;
 }
 
-.Book-details li a {
-    color: lightseagreen;
+@media (max-width: 1200px) {
+    .Book-title, .Book-synopsis, .Book-subtitle, .Book-publish {
+        padding-right: 20px;
+    }
 }
 
+@media (max-width: 825px) {
+    .Book-img-cont, .Book-details {
+        width: 100%;
+        padding: 30px;
+    }
 
+    .Book-img-cont {
+        text-align: center;
+    }
 
+    .Book {
+        height: 100%;
+    }
+}
 
+@media (max-width: 400px) {
+    .Book-img {
+        height: 400px;
+    }
+
+    .Book-img-cont {
+        height: 500px;
+        padding: 0px;
+    }
+}

@@ -12,9 +12,8 @@
     height: 100vh;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    width: 100%;
     padding-top: 20px;
     padding-bottom: 50px;
 }
@@ -45,7 +44,7 @@
 .UpcomingMeetings-date {
     color: #1C0063;
     font-family: 'Montserrat';
-    font-weight: 600;
+    font-weight: 500;
     font-size: 48px;
     line-height: 57px;
     text-align: left;
