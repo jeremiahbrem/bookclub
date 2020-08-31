@@ -21,10 +21,6 @@
     transform: translateX(0);
 }
 
-.active {
-    color: lightseagreen;
-}
-
 .Menu-logo {
     position: absolute;
     left: 200px;
@@ -34,12 +30,16 @@
 .Menu-li {
     list-style: none;
     padding: 10px;
-    color: #FFFFFF;
     font-family: 'Montserrat';
     font-weight: 800;
     font-size: 31px;
     line-height: 38px;
     text-align: left;
+}
+
+.Menu a {
+    text-decoration: none;
+    color: white;
 }
 
 .Menu-x {

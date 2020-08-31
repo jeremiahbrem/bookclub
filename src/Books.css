@@ -59,6 +59,7 @@
 .Books-current-next {
     width: 43%;
     padding-left: 50px;
+    z-index: 2;
 }
 
 .Books-container {

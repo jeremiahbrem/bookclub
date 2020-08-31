@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from 'react-router-dom';
 import {ReactComponent as X} from '../assets/images/x.svg';
 import {ReactComponent as MenuLogo} from '../assets/images/menu-logo.svg';
 import "./Menu.css";
@@ -13,9 +14,27 @@ const Menu = ({open, setOpen, night}) => {
         <X className="Menu-x" onClick={() => setOpen(!open)}/>
         <MenuLogo className="Menu-logo"/>
         <ul className="Menu-ul">
-          <li className="Menu-li" onClick={() => setOpen(!open)}>HOME</li>
-          <li className="Menu-li" onClick={() => setOpen(!open)}>BOOKS</li>
-          <li className="Menu-li" onClick={() => setOpen(!open)}>SCHEDULE</li>
+          <li className="Menu-li">
+            <NavLink 
+              activeStyle={{color: "lightseagreen"}}
+              exact to={"/"} 
+              onClick={() => setOpen(!open)}>HOME
+            </NavLink>
+          </li>
+          <li className="Menu-li">
+            <NavLink
+              to={"/books"} 
+              activeStyle={{color: "lightseagreen"}}
+              onClick={() => setOpen(!open)}>BOOKS
+            </NavLink>
+          </li>
+          <li className="Menu-li">
+            <NavLink
+              to={"/schedule"} 
+              activeStyle={{color: "lightseagreen"}}
+              onClick={() => setOpen(!open)}>SCHEDULE
+            </NavLink>
+          </li>
         </ul>
       </div>   
     )  
