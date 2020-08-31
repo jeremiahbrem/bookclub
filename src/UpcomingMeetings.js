@@ -49,7 +49,7 @@ const UpcomingMeetings = ({ setSelectedMeeting, night }) => {
     return (
       <div className={`UpcomingMeetings ${night && 'UpcomingMeetings-night'}`}>
         <div className="UpcomingMeetings-text">
-          <div className="UpcomingMeetings-next">Next Meeting</div>
+          <div className="UpcomingMeetings-next">Next Meeting:</div>
           {item &&
           <div className={`UpcomingMeetings-date ${night && 'UpcomingMeetings-date-night'}`}>
             <p>{parseDate(item.meet_date)[0]}<small>{parseDate(item.meet_date)[1]}</small></p>
