@@ -39,13 +39,13 @@ class Book {
     }
     
     if (read_date) {
-      read_date = `${read_date.year}-${read_date.month}-01`;
       searchQuery += `${queryStart} read_date LIKE '%${read_date}%'`;
+  
     }
-    
+
     const result = await db.query(
-      `SELECT id, isbn, title, synopsis, genre, publish_date, info_url,
-       read_date, price, author FROM books ${searchQuery}
+      `SELECT id, isbn, title, read_date, synopsis, genre, publish_date, info_url,
+       price, author FROM books ${searchQuery}
        ORDER BY ${sort} ${order}`
     );
     return result.rows;

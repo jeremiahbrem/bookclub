@@ -10,8 +10,8 @@ const Book = require("../models/book.js");
 // router.get("/", ensureLoggedIn, async function (req, res, next) {
 router.get("/", async function (req, res, next) {
   try {
-    const {title, author, read_date, sort} = req.query
-    const response = await Book.getBooks({title, author, read_date, sort});
+    const {title, author, read_date, order, sort} = req.query
+    const response = await Book.getBooks({title, author, read_date, order, sort});
     
     return res.json({books: response});
   }

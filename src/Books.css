@@ -15,13 +15,15 @@
 .Books-inputs {
     margin-left: 85px;
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .Books-input {
     background-color: rgb(236, 228, 228);
     width: 345px;
     height: 34px;
-    margin: 10px 20px 0 0;
+    margin: 10px 20px 5px 0;
     font-family: 'Montserrat';
     color: #1C0063;
     font-size: 16px;
@@ -32,7 +34,7 @@
     width: 70px;
     background-color: rgb(236, 228, 228);
     height: 34px;
-    margin: 10px 12px 0 0;
+    margin: 10px 12px 5px 0;
     padding: 5px;
     text-align: center;
 }
@@ -48,16 +50,15 @@
 .Books-slider-cont {
     position: relative;
     padding-top: 90px;
-    width: 55%;
+    width: 53%;
     overflow-x: hidden;
     overflow-y: hidden;
     border-left: 2px solid rgb(236, 228, 228);
 }
 
 .Books-current-next {
-    width: 48%;
+    width: 43%;
     padding-left: 50px;
-    float: right;
 }
 
 .Books-container {
@@ -82,4 +83,47 @@
 
 .Books-text-night {
     color: white;
+}
+
+@media (max-width: 720px) {
+    .Books-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .Books-current-next {
+        position: absolute;
+        top: 650px;
+        width: 100%;
+        padding: 0px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .Books-slider-cont {
+        width: 100%;
+        border-left: none;
+    }
+
+    .Books {
+        height: 1700px;
+    }
+}
+@media (max-width: 593px) {
+    .Books {
+        height: 2300px;
+    }
+}
+@media (max-width: 530px) {
+    .Books-input {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .Books-inputs {
+        width: 100%;
+        margin: 0;
+        flex-direction: column;
+    }
 }

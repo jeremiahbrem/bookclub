@@ -1,6 +1,7 @@
 .CurrentNextBook {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .Current-book {
@@ -26,9 +27,9 @@
 .CurrentNextBook-book {
     padding: 35px 0px 50px 0px;
     height: 560px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
+    display: inline-block;
+    margin: auto;
 }
 
 .slider-img {
@@ -85,10 +86,4 @@
 
 .CurrentNext-text-night {
     color: white;
-}
-
-@media (max-width: 360px) {
-    .BookSlider {
-        margin-left: 20px;
-    }
 }

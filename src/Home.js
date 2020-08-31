@@ -16,7 +16,7 @@ const Home = ({setSelectedMeeting, open, night}) => {
         <Hero night={night}/>
         <Intro night={night}/>
         <BookQuote night={night}/>
-        <BookSlider night={night} bookScrollCheck={window.innerWidth}/>
+        <BookSlider night={night} sliderSizeCheck={1}/>
         <UpcomingMeetings setSelectedMeeting={setSelectedMeeting} night={night}/>
         <Contact />
       </div>
