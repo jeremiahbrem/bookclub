@@ -10,10 +10,10 @@ import Menu from "./display/Menu";
 import Login from "./Login";
 import Admin from "./Admin";
 import NavBar from "./display/Navbar";
+
 function App () {
     // sets state for opening and closing menu
     const [open, setOpen] = useState(false);
-    const [selectedMeeting, setSelectedMeeting] = useState(null);
     // sets state for user scroll position, to change navbar background color
     const [scroll, setScroll] = useState(0);
     const [night, setNight] = useState(false);
@@ -33,7 +33,6 @@ function App () {
           <div className="content">
             <Route exact path="/" render={props => 
               (<Home {...props} 
-                setSelectedMeeting={setSelectedMeeting} 
                 open={open}
                 night={night}
                 setNight={setNight}
@@ -41,20 +40,20 @@ function App () {
             />
             <Route path="/books" render={props => 
               (<Books {...props} 
+                open={open}
                 night={night}
               />)}
             />  
             <Route exact path="/book/:isbn" render={props => 
               (<Book {...props} 
-                selectedMeeting={selectedMeeting}
-                setSelectedMeeting={setSelectedMeeting}
+                open={open}
                 night={night}
               />)}/>
             <Route path="/contact" component={Contact}/>
             <Route path="/schedule" render={props => 
-              (<Schedule {...props} 
-                selectedMeeting={selectedMeeting}
-                setSelectedMeeting={setSelectedMeeting}
+              (<Schedule {...props}
+                open={open}
+                night={night}
               />)}/>
             <Route path="/login" component={Login}/>
             <Route path="/admin" component={Admin}/>

@@ -24,7 +24,7 @@ class Meeting {
         'HH:MI AM MM/DD YYYY'
        ) meet_date
        FROM meetings
-       ORDER BY meet_date`
+       ORDER BY date DESC`
     );
     return result.rows;
   }

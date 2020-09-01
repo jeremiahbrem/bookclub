@@ -1,5 +1,22 @@
+.Books-wrapper {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility .4s, opacity .4s;
+}
+ 
+ .Books-wrapper-show {
+     visibility: visible;
+     opacity: 1;
+ }
+
+ .Books-wrapper-hidden {
+    opacity: 0;
+    visibility: hidden;
+ }
+
 .Books {
     padding-top: 85px;
+    padding-bottom: 40px;
 }
 
 .Books-my {
@@ -51,6 +68,7 @@
     position: relative;
     padding-top: 90px;
     width: 53%;
+    height: 600px;
     overflow-x: hidden;
     overflow-y: hidden;
     border-left: 2px solid rgb(236, 228, 228);

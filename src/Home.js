@@ -6,10 +6,9 @@ import BookSlider from "./BookSlider";
 import UpcomingMeetings from "./UpcomingMeetings";
 import Contact from "./Contact";
 import "./Home.css";
-import { set } from "draft-js/lib/DefaultDraftBlockRenderMap";
  
 // component for home page
-const Home = ({setSelectedMeeting, open, night}) => {
+const Home = ({open, night}) => {
    
     return (
       <div className={open ? "Home Home-hidden" : "Home Home-show"}>
@@ -17,7 +16,7 @@ const Home = ({setSelectedMeeting, open, night}) => {
         <Intro night={night}/>
         <BookQuote night={night}/>
         <BookSlider night={night} sliderSizeCheck={1}/>
-        <UpcomingMeetings setSelectedMeeting={setSelectedMeeting} night={night}/>
+        <UpcomingMeetings night={night}/>
         <Contact />
       </div>
     );

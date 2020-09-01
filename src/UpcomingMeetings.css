@@ -9,7 +9,6 @@
 
 .UpcomingMeetings {
     padding: 80px;
-    height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -26,7 +25,7 @@
     font-size: 24px;
     line-height: 40px;
     font-weight: 600;
-    width: 50%;
+    width: 47%;
     text-align: left;
     margin: 30px 0px 50px 30px;
 }
@@ -70,10 +69,6 @@
     margin-bottom: 35px;
 }
 
-.UpcomingMeetings-description-night {
-    color: white;
-}
-
 .UpcomingMeetings-button {
     background-color: #2BBD66;
     width: 206px;
@@ -85,17 +80,27 @@
     cursor: pointer;
 }
 
-.UpcomingMeetings-button p {
+.UpcomingMeetings-button a {
+    text-decoration: none;
     color: white;
     font-family: 'Montserrat';
     font-weight: 600;
 }
 
 .UpcomingMeetings-editor {
+    color: #1c0063;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 40px;
     width: 475px;
 }
 
-@media (max-width: 1250px) {
+.UpcomingMeetings-description-night {
+    color: white;
+}
+
+@media (max-width: 1300px) {
     .UpcomingMeetings-img {
         width: 453px;
         height: 429px;

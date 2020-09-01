@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertFromRaw } from "draft-js";
-import { convertFromHTML, convertToHTML } from "draft-convert";
+import Contact from "./Contact";
 import "./Schedule.css";
 
 const { parseDate } = require("./utilities/parseDate.js");
 const { trimDescription } = require("./utilities/trimDescription.js");
-const Schedule = ({setSelectedMeeting, selectedMeeting}) => {
+const Schedule = ({night}) => {
   
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -20,9 +20,21 @@ const Schedule = ({setSelectedMeeting, selectedMeeting}) => {
     .then(
       (result) => {
         if (mounted) {
-          // console.log(JSON.parse(result.meetings[0].description).blocks[0]);
-          setItems(result.meetings);
           setIsLoaded(true);
+          let nextDate;
+          let meetings = result.meetings;
+          // meetings are returned from api in descending order, so loop through
+          // and find first meeting dated before today, then set next meeting to previous array item
+          for (let i = 0; i < meetings.length; i++) {
+            if (Date.parse(meetings[i].meet_date) < Date.parse(Date())) {
+              nextDate = Date.parse(meetings[i-1].meet_date);
+              break;
+            }
+          }
+          // include only next meeting and all previous
+          meetings = meetings.filter(meeting => (
+            Date.parse(meeting.meet_date) <= nextDate));
+          setItems(meetings);  
         }
       })
     .catch((error) => {
@@ -51,41 +63,59 @@ const Schedule = ({setSelectedMeeting, selectedMeeting}) => {
     );
   } else {
     return (
-      <div className="Schedule">
-        <h3 className="Schedule-now">{getDateString()}</h3>
-        <div className="Schedule-next">Next Meeting:</div>
-        {items.map(meeting => {
-          const trimmed = trimDescription(meeting.description);
-          const editorState=EditorState.createWithContent(convertFromRaw(JSON.parse(trimmed)));
-          return (
-            <div className="Schedule-text" key={meeting.id}>
-              <div className={`Schedule-date`}>
-                <p>{parseDate(meeting.meet_date)[0]}<small>{parseDate(meeting.meet_date)[1]}</small></p>
+      <div>
+        <div className={`Schedule ${night && 'Schedule-night'}`}>
+          <h3 className={`Schedule-now ${night && 'Schedule-text-night'}`}>{getDateString()}</h3>
+          {items.map(meeting => {
+            // make trimmed version of description
+            const trimmed = trimDescription(meeting.description);
+            // show full description if selected, trimmed if unselected
+            let editorState = (selected === meeting.id) ? 
+              // retrieves and parses rich text data from database
+              EditorState.createWithContent(convertFromRaw(JSON.parse(meeting.description))) :
+              EditorState.createWithContent(convertFromRaw(JSON.parse(trimmed)));
+            return (
+              <div onClick={() => setSelected(selected === meeting.id ? null : meeting.id)} 
+                // smooth transition if container clicked
+                className={`Schedule-text ${selected === meeting.id && 'Schedule-text-selected'}
+                  ${night && selected === meeting.id && 'Schedule-selected-night'}`} 
+                key={meeting.id}>
+                {/* label next meeting, which is first array item */}
+                {meeting.id === items[0].id &&  
+                <div className="Schedule-next">Next Meeting:</div>}
+                {/* label previous above all others */}
+                {meeting.id === items[1].id &&
+                <div className="Schedule-next">Previous:</div>}
+                <div className={`Schedule-date ${night && 'Schedule-text-night'}`}>
+                  {/* show user friendly time and date */}
+                  <p>{parseDate(meeting.meet_date)[0]}<small>{parseDate(meeting.meet_date)[1]}</small></p>
+                </div>
+                <div className={`Schedule-description ${night && 'Schedule-text-night'}`}>
+                  {/* rich text description, read-only */}
+                  <Editor 
+                    wrapperClassName={`Schedule-editor ${night && 'Schedule-text-night'}`}
+                    toolbarClassName="toolbar"
+                    editorClassName={`Schedule-editor ${night && 'Schedule-text-night'}`}
+                    editorState={editorState} 
+                    readOnly={true}
+                    toolbarHidden
+                  />
+                  <div className={`Schedule-link-cont`}>
+                    {/* smooth transition if container clicked */}
+                    <a className={`Schedule-link ${selected === meeting.id && 'Schedule-link-selected'}`} 
+                      href={'mailto:user@example.com'}>Contact
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div className={`Schedule-description`}>
-                <Editor 
-                  wrapperClassName="Schedule-editor"
-                  toolbarClassName="toolbar"
-                  editorState={editorState} 
-                  readOnly={true}
-                  toolbarHidden
-                />
-              </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
+        <Contact/>
       </div>
+      
     );
   }
-  // console.log(JSON.parse(result.meetings[0].description).blocks[0].text.slice(0,100));
-  // setEditorState(
-  //   EditorState.createWithContent(convertFromRaw(JSON.parse(meeting.description)))
-  //  );
-  // <Editor 
-  //                       editorState={editorState} 
-  //                       readOnly={true}
-  //                       toolbarHidden
-  //                     />
 }
 
 

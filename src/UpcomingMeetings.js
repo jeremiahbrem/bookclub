@@ -21,12 +21,14 @@ const UpcomingMeetings = ({ setSelectedMeeting, night }) => {
     .then(
       (result) => {
         if (mounted) {
-          for (let meeting of result.meetings) {
-            if (Date.parse(meeting.meet_date) >= Date.parse(Date())) {
-              setItem(meeting);
+          let meetings = result.meetings;
+          // meetings are returned from api in descending order, so loop through
+          // and find first meeting dated before today, then set next meeting to previous array item 
+          for (let i = 0; i < meetings.length; i++) {
+            if (Date.parse(meetings[i].meet_date) < Date.parse(Date())) {
+              setItem(meetings[i-1]);
               setEditorState(
-                EditorState.createWithContent(convertFromRaw(JSON.parse(meeting.description)))
-               );
+                EditorState.createWithContent(convertFromRaw(JSON.parse(meetings[i-1].description))))
               break;
             }
           }
@@ -57,15 +59,16 @@ const UpcomingMeetings = ({ setSelectedMeeting, night }) => {
           {item &&
           <div className={`UpcomingMeetings-description ${night && 'UpcomingMeetings-description-night'}`}>
             <Editor 
-              wrapperClassName="UpcomingMeetings-editor"
+              wrapperClassName="UpcomingMeetings-wrapper"
               toolbarClassName="toolbar"
+              editorClassName={`UpcomingMeetings-editor ${night && 'UpcomingMeetings-description-night'}`}
               editorState={editorState} 
               readOnly={true}
               toolbarHidden
             />
           </div>}
 
-          <button className="UpcomingMeetings-button"><p>View schedule</p></button>
+          <button className="UpcomingMeetings-button"><Link to="/schedule">View schedule</Link></button>
         </div>
         <div className="UpcomingMeetings-img"></div>
       </div>

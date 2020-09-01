@@ -9,17 +9,46 @@
     line-height: 33px;
     font-weight: 800;
     text-align: left;
+    margin-bottom: 85px;
 }
 
 .Schedule-next {
-    margin-top: 85px;
-    margin-left: 75px;
-    background-color: yellow;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 200px;
+    color: #2BBD66;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: left;
 }
 
 .Schedule-night {
     background-color: #1C0063;
+}
+
+.Schedule-link {
+    text-decoration: none;
+    color: #2BBD66;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25px;
+    text-align: left;
+    float: left;
+    position: relative;
+    top: 0;
+    transition: top .4s;
+}
+
+.Schedule-link-selected {
+    top: 25px;
+}
+
+.Schedule-link-cont {
+    width: 300px;
 }
 
 .Schedule-text {
@@ -28,20 +57,25 @@
     font-weight: 600;
     width: 85%;
     display: flex;
-    margin-left: 75px;
-    background-color: pink;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    margin-left: 60px;
+    min-height: 175px;
+    transition: min-height .4s, background-color .4s;
+    cursor: pointer;
+    width: 100%;
+    position: relative;
 }
 
-.Schedule-next {
-    color: #2BBD66;
-    font-family: 'Montserrat';
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 25px;
-    text-align: left;
-    margin-bottom: 10px;
+.Schedule-text-selected {
+    min-height: 275px;
+    background-color: rgb(243, 239, 239);
+   
 }
 
+.Schedule-selected-night {
+     background-color: rgb(43, 27, 134);
+}
 .Schedule-date {
     color: #1C0063;
     font-family: 'Montserrat';
@@ -50,11 +84,9 @@
     line-height: 57px;
     text-align: left;
     margin-top: 20px;
-    width: 375px;
-}
-
-.Schedule-date-night {
-    color: white;
+    margin-right: 10px;
+    width: 300px;
+    height: 100px;
 }
 
 .Schedule-date small {
@@ -66,19 +98,47 @@
     font-family: 'Montserrat';
     font-weight: 500;
     font-size: 20px;
-    line-height: 40px;
+    line-height: 30px;
     text-align: right;
     margin-bottom: 35px;
-    width: 100%;
-    background-color: lightsalmon;
-}
-
-.Schedule-description-night {
-    color: white;
+    width: 60%;
+    padding-left: 10px;
 }
 
 .Schedule-editor {
     width: 100%;
-    background-color: olivedrab;
+}
+
+.Schedule-text-night {
+    color: white;
+}
+
+@media (max-width: 1200px) {
+    .Schedule-description {
+        width: 100%;
+    }
+    .Schedule-text {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 900px) {
+    .Schedule {
+        padding: 90px 40px 50px 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .Schedule {
+        padding: 90px 10px 50px 10px;
+    }
+}
+
+@media (max-width: 340px) {
+
+    .Schedule-description {
+        width: 290px;
+    }
 }
 

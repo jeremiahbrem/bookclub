@@ -1,17 +1,19 @@
 .Contact {
     margin: 0px;
     padding: 0px;
-    height: 100vh;
+    height: 650px;
+    position: relative;
 }
 
 .Contact-img {
   background: url("./assets/images/footer-image.png");
-  height: 100%;
-  width: 50%;
+  height: 657px;
+  width: 46%;
   background-size: cover;
   background-position: center;
   position: absolute;
   left: 0;
+  top: 0;
 }
 
 .Contact-form-cont {
@@ -205,6 +207,10 @@
     .Contact h3 {
         font-size: 20px;
         width: 275px;
+    }
+
+    .Contact-message {
+        width: 250px;
     }
 
     .Contact-recaptcha, .Contact-recaptcha-bg {

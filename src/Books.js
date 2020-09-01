@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
 import BookSlider from "./BookSlider";
 import CurrentNextBook from "./CurrentNextBook";
+import UpcomingMeetings from "./UpcomingMeetings";
+import Contact from "./Contact";
 import "./Books.css";
  
-const Books = ({night}) => {
+const Books = ({night, open}) => {
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [title, setTitle] = useState("");
@@ -65,47 +66,52 @@ const Books = ({night}) => {
     return <div>Loading...</div>;
   } else {
     return (
-      <div className={`Books ${night && 'Books-night'}`}>
-        <h3 className={`Books-my ${night && 'Books-text-night'}`}>My books</h3>
-        <div className="Books-inputs">
-          <div className="Books-input-cont">
-            <label className={`Books-label ${night && 'Books-text-night'}`}>Title:</label>
-            <input className="Books-input" name="title" onChange={handleChange}></input>
+      <div className={open ? "Books-wrapper Books-wrapper-hidden" : 
+        "Books-wrapper Books-wrapper-show"}>
+        <div className={`Books ${night && 'Books-night'}`}>
+          <h3 className={`Books-my ${night && 'Books-text-night'}`}>My books</h3>
+          <div className="Books-inputs">
+            <div className="Books-input-cont">
+              <label className={`Books-label ${night && 'Books-text-night'}`}>Title:</label>
+              <input className="Books-input" name="title" onChange={handleChange}></input>
+            </div>
+            <div className="Books-input-cont">
+              <label className={`Books-label ${night && 'Books-text-night'}`}>Author:</label>
+              <input className="Books-input" name="author" onChange={handleChange}></input>
+            </div>
+            <div className="Books-input-cont">
+              <label className={`Books-label ${night && 'Books-text-night'}`}>Date of read:</label>
+              <input className="Books-input-small" placeholder="MM" name="month" onChange={handleChange}></input>
+              <input className="Books-input-small" placeholder="YY" name="year" onChange={handleChange}></input>
+            </div>
           </div>
-          <div className="Books-input-cont">
-            <label className={`Books-label ${night && 'Books-text-night'}`}>Author:</label>
-            <input className="Books-input" name="author" onChange={handleChange}></input>
-          </div>
-          <div className="Books-input-cont">
-            <label className={`Books-label ${night && 'Books-text-night'}`}>Date of read:</label>
-            <input className="Books-input-small" placeholder="MM" name="month" onChange={handleChange}></input>
-            <input className="Books-input-small" placeholder="YY" name="year" onChange={handleChange}></input>
+          <div className="Books-container">
+            <div className="Books-current-next">
+              <CurrentNextBook night={night} current={current} next={next}/>
+            </div>
+            <div className="Books-slider-cont">
+              {/* show PREVIOUS if no user search inputs */}
+              {title === "" && author === "" && month === "" && year === "" &&
+              <h4 className={`Books-previous ${night && 'Books-text-night'}`}>PREVIOUSLY READ</h4>}
+              {/* slider element, accepts partial window width prop for half screen slider 
+                  accepts current date prop for returning previously read books*/}
+              <BookSlider 
+                // slider check value for button show/hide, different for mobile view
+                sliderSizeCheck={window.innerWidth > 720 ? 1.8 : 1}
+                night={night}
+                className="Books-slider"
+                // show all previously read books if not user search input
+                previousOnly={!title && !author && !month && !year && true}
+                // user search input
+                filters={`read_date=${(month && year) ? `20${year}-${month}` : ""}` +
+                  `&title=${title}&author=${author}`}
+              />
+            </div>
           </div>
         </div>
-        <div className="Books-container">
-          <div className="Books-current-next">
-            <CurrentNextBook night={night} current={current} next={next}/>
-          </div>
-          <div className="Books-slider-cont">
-            {/* show PREVIOUS if no user search inputs */}
-            {title === "" && author === "" && month === "" && year === "" &&
-            <h4 className={`Books-previous ${night && 'Books-text-night'}`}>PREVIOUSLY READ</h4>}
-            {/* slider element, accepts partial window width prop for half screen slider 
-                accepts current date prop for returning previously read books*/}
-            <BookSlider 
-              // slider check value for button show/hide, different for mobile view
-              sliderSizeCheck={window.innerWidth > 720 ? 1.8 : 1}
-              night={night}
-              className="Books-slider"
-              // show all previously read books if not user search input
-              previousOnly={!title && !author && !month && !year && true}
-              // user search input
-              filters={`read_date=${(month && year) ? `20${year}-${month}` : ""}` +
-                `&title=${title}&author=${author}`}
-            />
-          </div>
-        </div>
-      </div>
+        <UpcomingMeetings night={night}/>
+        <Contact night={night}/>
+      </div>  
     );
   }
 }

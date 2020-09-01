@@ -5,6 +5,7 @@ const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [favorite, setFavorite] = useState("");
+  // Success form submitted message
   const [showMessage, setShowMessage] = useState(false);
 
   function handleChange(event) {
@@ -21,6 +22,7 @@ const Contact = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
+    // test that form processes input data
     console.log(`Name: ${name} Email: ${email} Favorite read: ${favorite}`)
     setName("");
     setEmail("");

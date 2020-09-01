@@ -57,6 +57,10 @@
     background-color: rgb(143, 137, 137);
 }
 
+.font {
+    font-family: 'Montserrat';
+}
+
 @media (max-width: 600px) {
     .MeetingForm-input-container, .MeetingForm-editor-container {
         width: 100%;
