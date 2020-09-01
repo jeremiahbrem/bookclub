@@ -19,7 +19,6 @@ const BookSlider = ({night, sliderSizeCheck, filters, previousOnly}) => {
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
   useEffect(() => {
-    console.log(filters);
     // set current window size after resize for showing/hiding buttons if needed
     function handleResize() {
       setWindowSize(window.innerWidth);

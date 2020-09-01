@@ -1,15 +1,12 @@
 .Home {
-    visibility: visible;
     opacity: 1;
-    transition: visibility .4s, opacity .4s;
+    transition: opacity .4s;
 }
  
  .Home-show {
-     visibility: visible;
      opacity: 1;
  }
 
  .Home-hidden {
-    opacity: 0;
-    visibility: hidden;
+    opacity: .4;
  }

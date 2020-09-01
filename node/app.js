@@ -11,6 +11,7 @@ const cors = require("cors");
 const bookRoutes = require("./api/bookRoutes.js");
 const meetingRoutes = require("./api/meetingRoutes.js")
 const authRoutes = require("./api/authRoutes.js");
+const userRoutes = require("./api/userRoutes.js");
 const { authenticateJWT } = require("./middleware/auth.js");
 
 // allow both form-encoded and json body parsing
@@ -26,7 +27,8 @@ app.use(authenticateJWT);
 app.use(express.json());
 app.use("/db/api/books", bookRoutes);
 app.use("/db/api/meetings", meetingRoutes);
-app.use("/", authRoutes);
+app.use("/db/api/users", userRoutes);
+app.use("/db/api", authRoutes);
 
 // add logging system
 app.use(morgan("tiny"));

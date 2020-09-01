@@ -9,7 +9,7 @@ import {ReactComponent as MenuLogo} from '../assets/images/menu-logo.svg';
 import "./Menu.css";
 
 // component for Navbar
-const Navbar = ({open, setOpen, scroll, setScroll, night, setNight}) => {  
+const Navbar = ({open, setOpen, scroll, setScroll, night, setNight, setLoginOpen, loginOpen}) => {  
   const nightClass = night ? "-night" : "";
 
   // listens for user page scroll and sets scroll state to current page position
@@ -44,7 +44,11 @@ const Navbar = ({open, setOpen, scroll, setScroll, night, setNight}) => {
             {night &&
             <div className="navbar-night">Night</div>}
           </div>
-          <div className="navbar-user">
+          <div className="navbar-user" onClick={() => {
+              setOpen(!open);
+              setLoginOpen(!loginOpen);
+              }
+            }>  
             {!night &&
             <UserIcon className="navbar-user-icon"/>}
             {night &&

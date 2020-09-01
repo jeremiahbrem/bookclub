@@ -14,6 +14,7 @@ import NavBar from "./display/Navbar";
 function App () {
     // sets state for opening and closing menu
     const [open, setOpen] = useState(false);
+    const [loginOpen, setLoginOpen] = useState(false);
     // sets state for user scroll position, to change navbar background color
     const [scroll, setScroll] = useState(0);
     const [night, setNight] = useState(false);
@@ -21,6 +22,7 @@ function App () {
     return (
       <BrowserRouter>
         <div className={`App`}>
+          <Login loginOpen={loginOpen} setLoginOpen={setLoginOpen} setOpen={setOpen}/>
           <NavBar 
             scroll={scroll} 
             open={open} 
@@ -28,8 +30,11 @@ function App () {
             setScroll={setScroll}
             night={night}
             setNight={setNight}
+            setLoginOpen={setLoginOpen}
+            loginOpen={loginOpen}
           />
-          <Menu open={open} setOpen={setOpen} night={night}/>
+          {!loginOpen &&
+          <Menu open={open} setOpen={setOpen} night={night}/>}
           <div className="content">
             <Route exact path="/" render={props => 
               (<Home {...props} 

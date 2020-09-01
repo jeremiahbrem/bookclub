@@ -1,7 +1,6 @@
 const express = require("express");
 const router = new express.Router();
 const ExpressError = require("../helpers/expressError");
-const db = require("../db");
 const jwt = require("jsonwebtoken");
 const { SECRET_KEY } = require("../config.js");
 const User = require("../models/user.js");

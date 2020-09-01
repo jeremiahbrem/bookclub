@@ -66,7 +66,7 @@ const EditMeeting = ({
     setBookId(selectValue)   
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     updateMeeting({
       id,
@@ -74,7 +74,8 @@ const EditMeeting = ({
       book_id,
       description: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
       link: link
-    });
+    })
+    // console.log(response);
     setShowEditMeeting(false);
     setShowMeetings(true);
     setShowMeetingForm(false);

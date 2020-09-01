@@ -1,11 +1,11 @@
 -- DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS meetings;
+-- DROP TABLE IF EXISTS meetings;
 -- DROP TABLE IF EXISTS books;
 
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(30) NOT NULL UNIQUE,
-    password VARCHAR(30) NOT NULL,
+    password TEXT NOT NULL,
     is_admin BOOLEAN NOT NULL DEFAULT false
 );
 

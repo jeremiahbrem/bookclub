@@ -2,7 +2,7 @@
 
 const jwt = require("jsonwebtoken");
 const { SECRET_KEY } = require("../config.js");
-const User = require("../models/user.js")
+// const User = require("../models/user.js")
 
 /** Middleware: Authenticate user. */
 
@@ -42,7 +42,7 @@ function ensureCorrectUser(req, res, next) {
   }
 }
 
-/** Middleware: Requires message from or to user to view message details */
+/** Middleware: Requires admin access */
 async function ensureIsAdmin(req, res, next) {
   try {
     if (req.user.is_admin) {

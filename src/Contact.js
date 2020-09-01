@@ -17,7 +17,7 @@ const Contact = () => {
     else if (name === 'email')
       setEmail(target.value); 
     else  
-      setFavorite(target.value)   
+      setFavorite(target.value);   
   }
 
   function handleSubmit(event) {
@@ -53,7 +53,7 @@ const Contact = () => {
             <div className="Contact-check"></div>
           </div>
       
-          <button className="Contact-button"><p>Send</p></button>
+          <button className="Contact-button" type="submit"><p>Send</p></button>
         
         </form>
       </div>

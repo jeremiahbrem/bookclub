@@ -4,10 +4,9 @@ const router = new express.Router();
 // const ExpressError = require("../helpers/expressError");
 const Meeting = require("../models/meeting.js");
 // const jsonschema = require("jsonschema");
-// const { ensureLoggedIn, ensureIsAdmin } = require("../middleware/auth.js");
+const { ensureIsAdmin } = require("../middleware/auth.js");
 
 // returns list of meetings
-// router.get("/", ensureLoggedIn, async function (req, res, next) {
 router.get("/", async function (req, res, next) {
   try {
     const response = await Meeting.getMeetings();
@@ -30,8 +29,7 @@ router.get("/:id", async function (req, res, next) {
 })
 
 // creates and returns new book
-// router.post("/", ensureIsAdmin, async function (req, res, next) {
-router.post("/", async function (req, res, next) {
+router.post("/", ensureIsAdmin, async function (req, res, next) {
   try {
     // const result = jsonschema.validate(req.body, newCompany);
 
@@ -50,8 +48,7 @@ router.post("/", async function (req, res, next) {
 })
 
 // updates book and returns updated book
-// router.patch("/:handle", ensureIsAdmin, async function (req, res, next) {
-router.patch("/:id", async function (req, res, next) {
+router.patch("/:id", ensureIsAdmin, async function (req, res, next) {
   try {
     // if (req.body.handle) {
     //   throw new ExpressError("Updating handle not allowed", 401);
@@ -71,7 +68,7 @@ router.patch("/:id", async function (req, res, next) {
   }
 })
 
-router.delete("/:id", async function (req, res, next) {
+router.delete("/:id", ensureIsAdmin, async function (req, res, next) {
   try {
     const meeting = await Meeting.getMeeting(req.params.id);
     const message = await meeting.delete();

@@ -1,0 +1,75 @@
+.Login-container {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 200px;
+    width: 100%;
+    z-index: 5;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .4s, opacity .4s;
+}
+
+.Login-container-show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.Login-form {
+    width: 300px;
+    background-color: #1C0063;
+    text-align: left;
+    padding: 40px 30px 20px 30px;
+    box-shadow: 0 0 15px 10px #141414;
+}
+
+.Login-label {
+    font-family: 'Montserrat';
+    color: white;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: left;
+    position: relative;
+    bottom: 10px;
+}
+
+.Login-input {
+    background-color: #330c96;
+    width: 92%;
+    height: 25px;
+    margin-bottom: 40px;
+    color: white;
+    padding: 10px;
+    font-family: 'Montserrat';
+}
+
+.Login-button {
+    background-color: #2BBD66;
+    width: 190px;
+    height: 50px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.Login-button p {
+    color: white;
+    font-size: 15px;
+    line-height: 22px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.Login-message {
+    font-family: 'Montserrat';
+    color: white;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+}
