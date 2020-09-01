@@ -6,7 +6,7 @@ import "./Schedule.css";
 
 const { parseDate } = require("./utilities/parseDate.js");
 const { trimDescription } = require("./utilities/trimDescription.js");
-const Schedule = ({night}) => {
+const Schedule = ({night, open}) => {
   
   const [error, setDbError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -63,7 +63,9 @@ const Schedule = ({night}) => {
     );
   } else {
     return (
-      <div>
+      // show or fade container if menu open/closed
+      <div className={open ? "Schedule-wrapper Schedule-wrapper-hidden" : 
+      "Schedule-wrapper Schedule-wrapper-show"}>
         <div className={`Schedule ${night && 'Schedule-night'}`}>
           <h3 className={`Schedule-now ${night && 'Schedule-text-night'}`}>{getDateString()}</h3>
           {items.map(meeting => {

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { ReactComponent as Arrow} from "./assets/images/arrow-right.svg";
 import { ReactComponent as ArrowDark} from "./assets/images/arrow-right-dark.svg";
+import { Link } from 'react-router-dom';
 import UpcomingMeetings from "./UpcomingMeetings";
 import Contact from "./Contact";
 import "./Book.css";
  
-const Book = ({ match, night }) => {
+const Book = ({ match, night, open }) => {
     const {
       params: { isbn }
     } = match;
@@ -43,14 +44,17 @@ const Book = ({ match, night }) => {
     );
   } else {
     return (
-      <div>
+      <div className={open ? "Book-wrapper Book-wrapper-hidden" : 
+      "Book-wrapper Book-wrapper-show"}>
         <div className={`Book ${night && 'Book-night'}`}>
           <div className="Book-back">
             {night &&
             <Arrow className="Book-arrow-night"/>}
             {!night && 
             <ArrowDark className="Book-arrow"/>}
-            <div className={`Book-back-text ${night && 'Book-title-night'}`}>Back to results</div>
+            <Link to={`/books`}>
+              <div className={`Book-back-text ${night && 'Book-title-night'}`}>Back to results</div>
+            </Link>
           </div>
           <div className="Book-img-cont">
             <img className="Book-img" src={`/b/isbn/${item.isbn}-M.jpg`} alt=""/>

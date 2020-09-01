@@ -1,3 +1,16 @@
+.Schedule-wrapper {
+    opacity: 1;
+    transition: opacity .4s;
+}
+ 
+ .Schedule-wrapper-show {
+     opacity: 1;
+ }
+
+ .Schedule-wrapper-hidden {
+    opacity: 0.4;
+ }
+
 .Schedule {
     padding: 90px 90px 50px 90px;
 }

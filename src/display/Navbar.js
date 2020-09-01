@@ -9,7 +9,8 @@ import {ReactComponent as MenuLogo} from '../assets/images/menu-logo.svg';
 import "./Menu.css";
 
 // component for Navbar
-const Navbar = ({open, setOpen, scroll, setScroll, night, setNight, setLoginOpen, loginOpen}) => {  
+const Navbar = ({open, setOpen, scroll, setScroll, night, setNight, 
+  setLoginOpen, loginOpen, setShowLoggedOut}) => {  
   const nightClass = night ? "-night" : "";
 
   // listens for user page scroll and sets scroll state to current page position
@@ -45,15 +46,26 @@ const Navbar = ({open, setOpen, scroll, setScroll, night, setNight, setLoginOpen
             <div className="navbar-night">Night</div>}
           </div>
           <div className="navbar-user" onClick={() => {
-              setOpen(!open);
-              setLoginOpen(!loginOpen);
+              if (!localStorage.getItem('user')) {
+                setOpen(!open);
+                setLoginOpen(!loginOpen);
+              } else
+                setShowLoggedOut(true);
+                setTimeout(() => {
+                  setShowLoggedOut(false);
+                }, 2000)
+                localStorage.removeItem('token');        
+                localStorage.removeItem('user');        
               }
             }>  
             {!night &&
             <UserIcon className="navbar-user-icon"/>}
             {night &&
             <UserNight className="navbar-user-icon"/>}
-            <div className={`navbar-login ${night && 'navbar-night'}`}>Login</div>
+            {!localStorage.getItem('user') &&
+            <div className={`navbar-login ${night && 'navbar-night'}`}>Login</div>}
+            {localStorage.getItem('user') &&
+            <div className={`navbar-login ${night && 'navbar-night'}`}>Logout</div>}
           </div>
         </div>
     </div>   

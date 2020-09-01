@@ -17,12 +17,23 @@ function App () {
     const [loginOpen, setLoginOpen] = useState(false);
     // sets state for user scroll position, to change navbar background color
     const [scroll, setScroll] = useState(0);
+    // state for night mode
     const [night, setNight] = useState(false);
-  
+    const [showLoggedOut, setShowLoggedOut] = useState(false);
+
     return (
       <BrowserRouter>
-        <div className={`App`}>
-          <Login loginOpen={loginOpen} setLoginOpen={setLoginOpen} setOpen={setOpen}/>
+        <div className={`.App ${night && 'App-night'}`}>
+          <div className={`Logged-out-cont ${showLoggedOut && 'Logged-out-show'}`}>
+                <div className="Logged-out">
+                  Logged out!
+                </div>
+              </div>
+          <Login 
+            loginOpen={loginOpen} 
+            setLoginOpen={setLoginOpen} 
+            setOpen={setOpen} 
+          />
           <NavBar 
             scroll={scroll} 
             open={open} 
@@ -32,6 +43,7 @@ function App () {
             setNight={setNight}
             setLoginOpen={setLoginOpen}
             loginOpen={loginOpen}
+            setShowLoggedOut={setShowLoggedOut}
           />
           {!loginOpen &&
           <Menu open={open} setOpen={setOpen} night={night}/>}

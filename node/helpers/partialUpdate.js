@@ -5,6 +5,13 @@ function sqlForPartialUpdate(table, items, key, id) {
   let idx = 1;
   let columns = [];
 
+  // remove _token
+  for (let key in items) {
+    if (key.startsWith("_")) {
+      delete items[key];
+    }
+  }
+
   for (let column in items) {
     columns.push(`${column}=$${idx}`);
     idx += 1;

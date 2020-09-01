@@ -39,22 +39,6 @@ const MeetingForm = ({editorState, setEditorState, handleSubmit, handleChange, .
                 editorState={editorState}
                 onEditorStateChange={setEditorState}
                 placeholder="Enter description"
-                // toolbar={{
-                //     options: ['inline', 'colorPicker', 'fontSize', 'fontFamily'],  
-                //     inline: {
-                //       options: ['bold', 'italic', 'underline']
-                //     },
-                //     fontFamily: {
-                //         options: ['Montserrat'],
-                //         className: 'font'
-                //     },    
-                //     fontSize: {
-                //         options: [20]
-                //     },    
-                //     colorPicker: {
-                //         colors: []
-                //     }    
-                //   }}
             />
             <button className="MeetingForm-btn" type="submit">Submit</button>
         </div>        

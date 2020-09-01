@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 
-const Login = ({loginOpen, setLoginOpen, setOpen}) => {
+const Login = ({loginOpen, setLoginOpen, setOpen, setUser}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -27,16 +27,20 @@ const Login = ({loginOpen, setLoginOpen, setOpen}) => {
         .then(response => response.json())
         .then(json => {
           if (json.token) {
+            // save token for api authentication
             localStorage.setItem('token', json.token);
-            console.log(localStorage.getItem('token'));
+            localStorage.setItem('user', username);
             setMessage('Logged In!')
             setTimeout(() => {
+              setUsername("");
+              setPassword("");
               setLoginOpen(false);
               setOpen(false);
-            }, 4000);
+              setMessage("");
+            }, 2000);
           } else if (json.status === 400)
             setMessage(json.message);
-        }).catch(e => setMessage(e));  
+        }).catch(e => setMessage('There seems to be a problem with logging in.'));  
   }
 
   return (

@@ -1,17 +1,14 @@
 .Books-wrapper {
-    visibility: visible;
     opacity: 1;
-    transition: visibility .4s, opacity .4s;
+    transition: opacity .4s;
 }
  
- .Books-wrapper-show {
-     visibility: visible;
+.Books-wrapper-show {
      opacity: 1;
  }
 
- .Books-wrapper-hidden {
-    opacity: 0;
-    visibility: hidden;
+.Books-wrapper-hidden {
+    opacity: 0.4;
  }
 
 .Books {

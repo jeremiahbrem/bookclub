@@ -1,11 +1,10 @@
-.App-show {
-     visibility: visible;
+.App-night {
+    background-color: #1C0063;
 }
 
-.App-hidden {
-    visibility: hidden;
+.App {
+    background-color: white;
 }
-
 .navbar {
     position: fixed;
     top: 0px;
@@ -80,6 +79,33 @@
 
 .navbar-moon {
     margin-top: 3px;
+}
+
+.Logged-out-cont {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 200px;
+    position: fixed;
+    height: 100px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .4s, visibility .4s;
+}
+
+.Logged-out-show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.Logged-out {
+    font-family: 'Montserrat';
+    background-color: #1C0063;
+    color: white;
+    font-size: 22px;
+    padding: 30px;
+    box-shadow: 0 0 15px 10px #141414;
 }
 
 @media (max-width: 650px) {
